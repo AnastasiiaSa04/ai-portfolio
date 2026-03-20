@@ -1,0 +1,77 @@
+#contact { background: var(--dark); }
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+}
+.contact-links { display: flex; flex-direction: column; gap: 20px; }
+.contact-link {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 20px 24px;
+  border: 1px solid var(--border);
+  text-decoration: none;
+  transition: all 0.3s;
+  /* group: ''; */
+}
+.contact-link:hover {
+  border-color: rgba(0,245,255,0.4);
+  background: rgba(0,245,255,0.05);
+  transform: translateX(8px);
+  box-shadow: var(--glow);
+}
+.cl-icon {
+  font-size: 22px;
+  width: 40px;
+  text-align: center;
+  flex-shrink: 0;
+}
+.cl-text {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 13px;
+  color: var(--text);
+  letter-spacing: 1px;
+}
+.cl-label {
+  font-size: 10px;
+  color: var(--text-dim);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 4px;
+}
+ 
+.contact-info {
+  padding: 40px;
+  border: 1px solid var(--border);
+  background: rgba(0,245,255,0.03);
+  position: relative;
+}
+.contact-info::before {
+  content: 'OPEN_TO_OPPORTUNITIES';
+  position: absolute;
+  top: -10px; left: 20px;
+  background: var(--dark);
+  padding: 0 10px;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 10px;
+  color: var(--green);
+  letter-spacing: 3px;
+}
+.contact-info p {
+  font-size: 16px;
+  color: var(--text-dim);
+  line-height: 1.8;
+  margin-bottom: 16px;
+}
+.availability {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 24px;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 12px;
+  color: var(--green);
+  letter-spacing: 2px;
+}

@@ -1,0 +1,21 @@
+{
+  "name": "portfolio",
+  "version": "1.0.0",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev:fe": "npm run dev -w apps/frontend",
+    "dev:be": "npm run dev -w apps/backend",
+    "build": "npm run build --ws --if-present",
+    "typecheck": "npm run typecheck --ws --if-present"
+  },
+  "devDependencies": {
+    "typescript": "^5.5.0"
+  },
+  "dependencies": {
+    "groq-sdk": "^1.1.1"
+  }
+}
