@@ -45,6 +45,12 @@
   box-shadow: 0 0 8px var(--green);
   flex-shrink: 0;
 }
+
+.skill-dot-magenta {
+  background: var(--magenta);
+  box-shadow: 0 0 8px var(--magenta);
+}
+
 .skill-name {
   font-family: 'Share Tech Mono', monospace;
   font-size: 14px;
@@ -65,4 +71,43 @@
   border-radius: 1px;
   animation: fillBar 1.5s ease forwards;
   transform-origin: left;
+}
+
+.skill-fill-magenta {
+  background: var(--magenta);
+  box-shadow: 0 0 6px var(--magenta);
+}
+
+@keyframes fillBar {
+  from {
+    transform: scaleX(0);
+  }
+
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@media (max-width: 1100px) {
+  .skills-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 720px) {
+  .skills-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .skill-category {
+    padding: 28px;
+  }
+
+  .skill-item {
+    flex-wrap: wrap;
+  }
+
+  .skill-bar {
+    width: 100%;
+  }
 }

@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { ChatMessage, ChatRequest, ChatResponse } from '@portfolio/shared';
 import './Chat.css';
 import { Typewriter } from '../typewriter/Typewriter';
@@ -67,7 +67,7 @@ const ChatComponent: React.FC = () => {
     <div className="chat-container">
       <div className="chat-header">
         <span>AI_AGENT: ANASTASIIA_v1.0</span>
-        <span className="status-dot">● LIVE</span>
+        <span className="chat-status">● LIVE</span>
       </div>
 
       <div className="chat-messages" ref={scrollRef}>

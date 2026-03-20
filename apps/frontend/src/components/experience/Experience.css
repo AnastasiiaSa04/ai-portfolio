@@ -63,3 +63,13 @@
   color: var(--text-dim);
   line-height: 1.7;
 }
+
+@media (max-width: 640px) {
+  .timeline {
+    padding-left: 24px;
+  }
+
+  .timeline-dot {
+    left: -30px;
+  }
+}
