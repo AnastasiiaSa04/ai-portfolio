@@ -1,0 +1,347 @@
+.guide-robot {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: min(312px, calc(100vw - 24px));
+  z-index: 1200;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  pointer-events: none;
+  transition: transform 0.75s cubic-bezier(0.2, 0.9, 0.2, 1);
+}
+
+.guide-bubble {
+  width: 100%;
+  padding: 14px 16px;
+  border-radius: 22px;
+  border: 1px solid rgba(0, 245, 255, 0.2);
+  background: rgba(4, 13, 26, 0.94);
+  box-shadow: 0 18px 44px rgba(0, 0, 0, 0.42);
+  backdrop-filter: blur(16px);
+  position: relative;
+}
+
+.guide-action-row {
+  pointer-events: auto;
+  display: flex;
+  gap: 10px;
+}
+
+.guide-action-button {
+  pointer-events: auto;
+  border-radius: 999px;
+  color: #fff;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 10px 16px;
+  cursor: pointer;
+  box-shadow: 0 0 14px rgba(255, 0, 110, 0.12);
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.guide-action-button:hover {
+  transform: translateY(-2px);
+}
+
+.guide-action-button-primary {
+  border: 1px solid rgba(0, 245, 255, 0.28);
+  background: rgba(0, 245, 255, 0.1);
+  box-shadow: 0 0 14px rgba(0, 245, 255, 0.12);
+}
+
+.guide-action-button-primary:hover {
+  background: rgba(0, 245, 255, 0.16);
+  border-color: rgba(0, 245, 255, 0.42);
+}
+
+.guide-action-button-danger {
+  border: 1px solid rgba(255, 0, 110, 0.28);
+  background: rgba(255, 0, 110, 0.1);
+  box-shadow: 0 0 14px rgba(255, 0, 110, 0.12);
+}
+
+.guide-action-button-danger:hover {
+  background: rgba(255, 0, 110, 0.16);
+  border-color: rgba(255, 0, 110, 0.42);
+}
+
+.guide-consent-button {
+  pointer-events: auto;
+  border: 1px solid rgba(0, 245, 255, 0.26);
+  border-radius: 999px;
+  background: rgba(0, 245, 255, 0.1);
+  color: #fff;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 10px 16px;
+  cursor: pointer;
+  box-shadow: 0 0 16px rgba(0, 245, 255, 0.12);
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.guide-consent-button:hover {
+  transform: translateY(-2px);
+  background: rgba(0, 245, 255, 0.16);
+  border-color: rgba(0, 245, 255, 0.42);
+}
+
+.guide-bubble::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: -10px;
+  width: 20px;
+  height: 20px;
+  background: rgba(4, 13, 26, 0.94);
+  border-right: 1px solid rgba(0, 245, 255, 0.2);
+  border-bottom: 1px solid rgba(0, 245, 255, 0.2);
+  transform: translateX(-50%) rotate(45deg);
+}
+
+.guide-status {
+  display: inline-flex;
+  align-items: center;
+  padding: 5px 10px;
+  border-radius: 999px;
+  background: rgba(0, 245, 255, 0.09);
+  border: 1px solid rgba(0, 245, 255, 0.16);
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--cyan);
+}
+
+.guide-bubble p {
+  margin-top: 10px;
+  font-size: 14px;
+  line-height: 1.65;
+  color: #fff;
+}
+
+.guide-bubble-meta {
+  margin-top: 12px;
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--text-dim);
+}
+
+.guide-avatar {
+  position: relative;
+  width: 108px;
+  min-height: 136px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+  animation: guideFloat 3.2s ease-in-out infinite;
+}
+
+.guide-antenna {
+  width: 2px;
+  height: 20px;
+  background: linear-gradient(180deg, var(--green), var(--cyan));
+  position: relative;
+}
+
+.guide-antenna::after {
+  content: '';
+  position: absolute;
+  top: -7px;
+  left: 50%;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  transform: translateX(-50%);
+  background: var(--green);
+  box-shadow: 0 0 14px rgba(57, 255, 20, 0.55);
+}
+
+.guide-head {
+  width: 76px;
+  height: 58px;
+  margin-top: 6px;
+  border-radius: 22px;
+  border: 1px solid rgba(0, 245, 255, 0.24);
+  background: rgba(7, 20, 40, 0.96);
+  box-shadow: inset 0 0 18px rgba(0, 245, 255, 0.08);
+}
+
+.guide-eyes {
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  margin-top: 18px;
+}
+
+.guide-eye {
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  background: var(--cyan);
+  box-shadow: 0 0 16px rgba(0, 245, 255, 0.55);
+}
+
+.guide-mouth {
+  width: 28px;
+  height: 4px;
+  margin: 10px auto 0;
+  border-radius: 999px;
+  background: rgba(0, 245, 255, 0.34);
+}
+
+.guide-body {
+  width: 62px;
+  height: 34px;
+  margin-top: 10px;
+  border-radius: 18px;
+  border: 1px solid rgba(0, 245, 255, 0.22);
+  background: rgba(0, 245, 255, 0.05);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 6px;
+  padding: 0 14px;
+}
+
+.guide-body-line {
+  height: 2px;
+  border-radius: 999px;
+  background: rgba(0, 245, 255, 0.36);
+}
+
+.guide-feet {
+  margin-top: 8px;
+  display: flex;
+  gap: 18px;
+}
+
+.guide-feet span {
+  width: 12px;
+  height: 6px;
+  border-radius: 999px;
+  background: rgba(0, 245, 255, 0.2);
+}
+
+.guide-caption-line {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 1px;
+  text-transform: lowercase;
+  color: var(--text-dim);
+}
+
+.guide-robot.sleeping .guide-eye {
+  height: 2px;
+  margin-top: 5px;
+  box-shadow: none;
+  background: rgba(0, 245, 255, 0.45);
+}
+
+.guide-robot.listening .guide-status,
+.guide-robot.touring .guide-status {
+  box-shadow: 0 0 16px rgba(0, 245, 255, 0.16);
+}
+
+.guide-robot.listening .guide-antenna::after,
+.guide-robot.touring .guide-antenna::after {
+  animation: guideSignal 1.4s ease-in-out infinite;
+}
+
+main section {
+  scroll-margin-top: 120px;
+  transition:
+    transform 0.35s ease,
+    box-shadow 0.35s ease,
+    opacity 0.35s ease,
+    filter 0.35s ease;
+}
+
+body.guide-mode main section:not(.guide-focus) {
+  opacity: 0.7;
+  filter: saturate(0.82);
+}
+
+main section.guide-focus {
+  position: relative;
+  transform: scale(1.018);
+  transform-origin: top center;
+  box-shadow:
+    0 0 0 1px rgba(0, 245, 255, 0.3),
+    0 0 44px rgba(0, 245, 255, 0.14);
+  z-index: 6;
+}
+
+body.guide-reduced-motion .guide-robot,
+body.guide-reduced-motion .guide-avatar,
+body.guide-reduced-motion .guide-consent-button,
+body.guide-reduced-motion .guide-action-button,
+body.guide-reduced-motion main section,
+body.guide-reduced-motion .guide-antenna::after {
+  transition: none;
+  animation: none;
+}
+
+body.guide-reduced-motion main section.guide-focus {
+  transform: none;
+}
+
+@keyframes guideFloat {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-4px);
+  }
+}
+
+@keyframes guideSignal {
+  0%,
+  100% {
+    box-shadow: 0 0 10px rgba(57, 255, 20, 0.35);
+    transform: translateX(-50%) scale(1);
+  }
+
+  50% {
+    box-shadow: 0 0 18px rgba(57, 255, 20, 0.65);
+    transform: translateX(-50%) scale(1.08);
+  }
+}
+
+@media (max-width: 640px) {
+  .guide-robot {
+    width: min(248px, calc(100vw - 24px));
+  }
+
+  .guide-bubble {
+    padding: 12px 14px;
+  }
+
+  .guide-bubble p {
+    font-size: 13px;
+  }
+
+  .guide-action-row {
+    width: 100%;
+    justify-content: center;
+  }
+}

@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import ChatComponent from './components/chat/ChatComponent';
+import GuideRobot from './components/guide/GuideRobot';
 import './components/hero/Hero.css';
 import './components/about/About.css';
 import './components/chat/Chat.css';
@@ -397,6 +398,7 @@ function App() {
           <span>GERMANY</span>
         </footer>
       </main>
+      <GuideRobot />
     </div>
   );
 }
