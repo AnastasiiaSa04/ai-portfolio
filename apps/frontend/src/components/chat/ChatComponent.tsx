@@ -3,6 +3,8 @@ import { ChatMessage, ChatRequest, ChatResponse } from '@portfolio/shared';
 import './Chat.css';
 import { Typewriter } from '../typewriter/Typewriter';
 
+const API_BASE_URL = (import.meta.env.VITE_API_URL || 'http://localhost:3001').replace(/\/$/, '');
+
 const QUICK_PROMPTS = [
   "What is your tech stack?",
   "Are you open for relocation?",
@@ -23,19 +25,25 @@ const ChatComponent: React.FC = () => {
   const executeChat = async (currentMessages: ChatMessage[]) => {
     setIsLoading(true);
     try {
-      const response = await fetch('http://localhost:3001/api/chat', {
+      const response = await fetch(`${API_BASE_URL}/api/chat`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ messages: currentMessages } as ChatRequest),
       });
 
-      if (!response.ok) throw new Error('Server error');
+      const data = await response.json();
 
-      const data: ChatResponse = await response.json();
-      setMessages([...currentMessages, { role: 'assistant', content: data.reply }]);
+      if (!response.ok) {
+        throw new Error(data.error || 'Server error');
+      }
+
+      setMessages([...currentMessages, { role: 'assistant', content: (data as ChatResponse).reply }]);
     } catch (error) {
       console.error('AI Error:', error);
-      setMessages([...currentMessages, { role: 'assistant', content: "ERROR: Connection lost. Check backend terminal." }]);
+      const message = error instanceof Error
+        ? error.message
+        : 'The assistant is temporarily unavailable.';
+      setMessages([...currentMessages, { role: 'assistant', content: `AI assistant: ${message}` }]);
     } finally {
       setIsLoading(false);
     }

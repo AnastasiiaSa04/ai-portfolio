@@ -28,95 +28,92 @@ const AI_FEATURES = [
 
 function App() {
   useEffect(() => {
-    const canvas = document.getElementById('bg-canvas') as HTMLCanvasElement | null;
-    const ctx = canvas?.getContext('2d');
-    if (!canvas || !ctx) return;
+  const canvas = document.getElementById('bg-canvas') as HTMLCanvasElement | null;
+  const ctx = canvas?.getContext('2d');
+  if (!canvas || !ctx) return;
 
-    let animationFrameId = 0;
-    let particles: BackgroundParticle[] = [];
+  let animationFrameId = 0;
+  let particles: BackgroundParticle[] = [];
 
-    const initParticles = () => {
-      const count = Math.max(48, Math.floor(window.innerWidth / 16));
-      particles = Array.from({ length: count }, () => ({
-        x: Math.random() * canvas.width,
-        y: Math.random() * canvas.height,
-        vx: (Math.random() - 0.5) * 0.4,
-        vy: (Math.random() - 0.5) * 0.4,
-        radius: Math.random() * 1.5 + 0.5,
-        alpha: Math.random() * 0.6 + 0.2,
-      }));
-    };
+  const initParticles = () => {
+    // Меньше частиц — лучше производительность
+    const count = Math.min(60, Math.floor(window.innerWidth / 20));
+    particles = Array.from({ length: count }, () => ({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      vx: (Math.random() - 0.5) * 0.3,
+      vy: (Math.random() - 0.5) * 0.3,
+      radius: Math.random() * 1.2 + 0.4,
+      alpha: Math.random() * 0.5 + 0.15,
+    }));
+  };
 
-    const resizeCanvas = () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-      initParticles();
-    };
+  const resizeCanvas = () => {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    initParticles();
+  };
 
-    const drawGrid = () => {
-      const step = 80;
-      ctx.strokeStyle = 'rgba(0, 245, 255, 0.04)';
+  const CONNECTION_DISTANCE = 90; // уменьшили с 100
 
-      for (let x = 0; x < canvas.width; x += step) {
-        ctx.beginPath();
-        ctx.moveTo(x, 0);
-        ctx.lineTo(x, canvas.height);
-        ctx.stroke();
-      }
+  const drawFrame = () => {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-      for (let y = 0; y < canvas.height; y += step) {
-        ctx.beginPath();
-        ctx.moveTo(0, y);
-        ctx.lineTo(canvas.width, y);
-        ctx.stroke();
-      }
-    };
+    // Сетка
+    ctx.strokeStyle = 'rgba(0, 245, 255, 0.04)';
+    ctx.lineWidth = 1;
+    for (let x = 0; x < canvas.width; x += 80) {
+      ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, canvas.height); ctx.stroke();
+    }
+    for (let y = 0; y < canvas.height; y += 80) {
+      ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(canvas.width, y); ctx.stroke();
+    }
 
-    const drawFrame = () => {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      drawGrid();
+    // Частицы + связи
+    const len = particles.length;
+    for (let i = 0; i < len; i++) {
+      const p = particles[i];
+      p.x += p.vx;
+      p.y += p.vy;
+      if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
+      if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
 
-      particles.forEach((particle, index) => {
-        particle.x += particle.vx;
-        particle.y += particle.vy;
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(0,245,255,${p.alpha})`;
+      ctx.fill();
 
-        if (particle.x < 0 || particle.x > canvas.width) particle.vx *= -1;
-        if (particle.y < 0 || particle.y > canvas.height) particle.vy *= -1;
-
-        ctx.beginPath();
-        ctx.arc(particle.x, particle.y, particle.radius, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(0, 245, 255, ${particle.alpha})`;
-        ctx.fill();
-
-        for (let nextIndex = index + 1; nextIndex < particles.length; nextIndex += 1) {
-          const nextParticle = particles[nextIndex];
-          const distance = Math.hypot(
-            particle.x - nextParticle.x,
-            particle.y - nextParticle.y,
-          );
-
-          if (distance < 100) {
-            ctx.beginPath();
-            ctx.strokeStyle = `rgba(0, 245, 255, ${0.12 * (1 - distance / 100)})`;
-            ctx.moveTo(particle.x, particle.y);
-            ctx.lineTo(nextParticle.x, nextParticle.y);
-            ctx.stroke();
-          }
+      // Только половина связей — в 2 раза быстрее
+      for (let j = i + 1; j < len; j++) {
+        const q = particles[j];
+        const dx = p.x - q.x;
+        const dy = p.y - q.y;
+        // Избегаем sqrt пока возможно
+        if (Math.abs(dx) > CONNECTION_DISTANCE || Math.abs(dy) > CONNECTION_DISTANCE) continue;
+        const dist = Math.hypot(dx, dy);
+        if (dist < CONNECTION_DISTANCE) {
+          ctx.beginPath();
+          ctx.strokeStyle = `rgba(0,245,255,${0.1 * (1 - dist / CONNECTION_DISTANCE)})`;
+          ctx.lineWidth = 0.5;
+          ctx.moveTo(p.x, p.y);
+          ctx.lineTo(q.x, q.y);
+          ctx.stroke();
         }
-      });
+      }
+    }
 
-      animationFrameId = window.requestAnimationFrame(drawFrame);
-    };
+    animationFrameId = window.requestAnimationFrame(drawFrame);
+  };
 
-    window.addEventListener('resize', resizeCanvas);
-    resizeCanvas();
-    drawFrame();
+  window.addEventListener('resize', resizeCanvas);
+  resizeCanvas();
+  drawFrame();
 
-    return () => {
-      window.cancelAnimationFrame(animationFrameId);
-      window.removeEventListener('resize', resizeCanvas);
-    };
-  }, []);
+  return () => {
+    window.cancelAnimationFrame(animationFrameId);
+    window.removeEventListener('resize', resizeCanvas);
+  };
+}, []);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -136,30 +133,34 @@ function App() {
     return () => observer.disconnect();
   }, []);
 
-  useEffect(() => {
-    if (!window.matchMedia('(pointer: fine)').matches) return;
+useEffect(() => {
+  if (!window.matchMedia('(pointer: fine)').matches) return;
 
-    const cursor = document.getElementById('cursor');
-    const trail = document.getElementById('cursor-trail');
-    if (!cursor || !trail) return;
+  const cursor = document.getElementById('cursor');
+  const trail = document.getElementById('cursor-trail');
+  if (!cursor || !trail) return;
 
-    let trailTimeoutId = 0;
+  let mx = 0, my = 0, tx = 0, ty = 0;
+  let rafId = 0;
 
-    const moveCursor = (event: MouseEvent) => {
-      cursor.style.transform = `translate3d(${event.clientX}px, ${event.clientY}px, 0)`;
-      window.clearTimeout(trailTimeoutId);
-      trailTimeoutId = window.setTimeout(() => {
-        trail.style.transform = `translate3d(${event.clientX - 10}px, ${event.clientY - 10}px, 0)`;
-      }, 45);
-    };
+  const moveCursor = (e: MouseEvent) => { mx = e.clientX; my = e.clientY; };
 
-    window.addEventListener('mousemove', moveCursor);
+  const animate = () => {
+    cursor.style.transform = `translate3d(${mx}px, ${my}px, 0)`;
+    tx += (mx - tx) * 0.12;
+    ty += (my - ty) * 0.12;
+    trail.style.transform = `translate3d(${tx - 10}px, ${ty - 10}px, 0)`;
+    rafId = requestAnimationFrame(animate);
+  };
 
-    return () => {
-      window.removeEventListener('mousemove', moveCursor);
-      window.clearTimeout(trailTimeoutId);
-    };
-  }, []);
+  window.addEventListener('mousemove', moveCursor);
+  rafId = requestAnimationFrame(animate);
+
+  return () => {
+    window.removeEventListener('mousemove', moveCursor);
+    cancelAnimationFrame(rafId);
+  };
+}, []);
 
   return (
     <div className="portfolio-wrapper">
@@ -170,10 +171,11 @@ function App() {
       <nav>
         <div className="nav-logo">A.SULOLLARI</div>
         <ul className="nav-links">
-          <li><a href="#about">About</a></li>
-          <li><a href="#skills">Skills</a></li>
-          <li><a href="#ai-section">AI Twin</a></li>
-          <li><a href="#contact">Contact</a></li>
+<li><a href="#about">About</a></li>
+<li><a href="#skills">Skills</a></li>
+<li><a href="#experience">Experience</a></li>
+<li><a href="#ai-section">AI Twin</a></li>
+<li><a href="#contact">Contact</a></li>
         </ul>
       </nav>
 
@@ -215,10 +217,10 @@ function App() {
               <p>My path brings <strong>leadership, adaptability, and a relentless drive</strong> to every project.</p>
             </div>
             <div className="about-stats">
-              <div className="stat-card">
-                <span className="stat-number">2026</span>
-                <span className="stat-label">Current Year</span>
-              </div>
+<div className="stat-card">
+  <span className="stat-number">6+</span>
+  <span className="stat-label">Years of leadership</span>
+</div>
               <div className="stat-card">
                 <span className="stat-number">3</span>
                 <span className="stat-label">Languages</span>
