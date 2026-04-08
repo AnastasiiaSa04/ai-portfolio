@@ -85,7 +85,7 @@ function buildFallbackReply(input: string) {
   });
 }
 
-async function createModelReply(messages: ChatRequest['messages'], system = SYSTEM_PROMPT) {
+async function createModelReply(messages: ChatRequest['messages']) {
   const groq = getGroqClient();
 
   if (groq) {
@@ -94,7 +94,7 @@ async function createModelReply(messages: ChatRequest['messages'], system = SYST
         model: 'llama-3.3-70b-versatile',
         temperature: 0.72,
         max_tokens: 1100,
-        messages: [{ role: 'system', content: system }, ...messages],
+        messages: [{ role: 'system', content: SYSTEM_PROMPT }, ...messages],
       });
       return completion.choices[0]?.message?.content?.trim() || null;
     } catch (e) {
@@ -107,7 +107,7 @@ async function createModelReply(messages: ChatRequest['messages'], system = SYST
 
   try {
     const completion = await anthropic.messages.create({
-      system,
+      system: SYSTEM_PROMPT,
       messages: messages as any,
       model: 'claude-3-5-haiku-20241022',
       temperature: 0.72,
@@ -127,14 +127,14 @@ async function createModelReply(messages: ChatRequest['messages'], system = SYST
 
 chatRouter.post('/', async (req, res) => {
   try {
-    const { messages, systemPrompt }: ChatRequest = req.body;
+    const { messages }: ChatRequest = req.body;
 
     if (!messages || messages.length === 0) {
       return res.status(400).json({ error: 'No messages provided' });
     }
 
     const latestUserMessage = getLatestUserMessage(messages);
-    const reply = await createModelReply(messages, systemPrompt ?? SYSTEM_PROMPT);
+    const reply = await createModelReply(messages);
 
     const result: ChatResponse = {
       reply: reply || buildFallbackReply(latestUserMessage)

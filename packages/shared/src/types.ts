@@ -4,7 +4,6 @@ export interface ChatMessage {
 }
 export interface ChatRequest {
   messages: ChatMessage[]
-  systemPrompt?: string
 }
 
 export interface ChatResponse {

@@ -62,17 +62,6 @@
   border-color: rgba(0, 245, 255, 0.42);
 }
 
-.guide-action-button-voice {
-  border: 1px solid rgba(57, 255, 20, 0.28);
-  background: rgba(57, 255, 20, 0.09);
-  box-shadow: 0 0 14px rgba(57, 255, 20, 0.12);
-}
-
-.guide-action-button-voice:hover {
-  background: rgba(57, 255, 20, 0.14);
-  border-color: rgba(57, 255, 20, 0.42);
-}
-
 .guide-action-button-danger {
   border: 1px solid rgba(255, 0, 110, 0.28);
   background: rgba(255, 0, 110, 0.1);
@@ -463,26 +452,15 @@
   display: none;
 }
 
-.guide-robot.listening .guide-status,
-.guide-robot.touring .guide-status,
-.guide-robot.conversing .guide-status,
-.guide-robot.mic-active .guide-status,
-.guide-robot.thinking .guide-status {
+.guide-robot.touring .guide-status {
   box-shadow: 0 0 16px rgba(0, 245, 255, 0.16);
 }
 
-.guide-robot.listening .guide-antenna::after,
-.guide-robot.touring .guide-antenna::after,
-.guide-robot.mic-active .guide-antenna::after,
-.guide-robot.conversing .guide-antenna::after {
+.guide-robot.touring .guide-antenna::after {
   animation: guideSignal 1.4s ease-in-out infinite;
 }
 
-.guide-robot.thinking .guide-antenna::after {
-  animation: guideSignal 0.9s ease-in-out infinite;
-}
-
-.guide-robot.listening .guide-mouth {
+.guide-robot.touring .guide-mouth {
   box-shadow:
     0 0 12px rgba(0, 245, 255, 0.22),
     0 0 22px rgba(0, 245, 255, 0.12);
