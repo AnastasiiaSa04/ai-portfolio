@@ -32,8 +32,10 @@ Offer a gentle follow-up when it feels natural, but do not sound pushy or repeti
 
 About Anastasiia:
 - Full-Stack Developer based in Germany (Oschatz)
+- Ready for relocation across Germany
 - Skills: React, Redux, JavaScript, HTML/CSS, Node.js, Express.js, TypeScript, MySQL, MongoDB, Docker
-- Currently at IT Career Hub Berlin (Dec 2024 – Dec 2025)
+- IT Career Hub Berlin: Full-Stack Development Training (December 2024 – December 2025)
+- Frontend experience at Kunst Schule Berlin (January 2026 – April 2026)
 - Languages: German C1, English B2, Russian native
 - Email: sulollarianastasiia@gmail.com
 - GitHub: github.com/AnastasiiaSa04
@@ -61,6 +63,22 @@ function buildFallbackReply(input: string) {
   const normalized = input.toLowerCase();
   const language = detectResponseLanguage(input);
 
+  if (/(relocation|relocat|remote|onsite|move|umzug|berlin|germany|deutschland|location)/.test(normalized)) {
+    return pickLocalizedText(language, {
+      en: `Anastasiia is based in Oschatz, Germany, and she is ready for relocation across Germany. She is open to full-time opportunities, collaborative teams, and roles where she can keep growing in modern full-stack development.`,
+      ru: `Анастасия живёт в Oschatz, Германия, и готова к релокации по всей Германии. Она открыта к full-time возможностям, сильным командам и ролям, где сможет расти как modern full-stack developer.`,
+      de: `Anastasiia lebt in Oschatz in Deutschland und ist bereit, innerhalb Deutschlands umzuziehen. Sie ist offen für Vollzeitstellen, starke Teams und Rollen, in denen sie sich im modernen Full-Stack-Bereich weiterentwickeln kann.`,
+    });
+  }
+
+  if (/(kunst|schule|frontend experience|front-end experience|career|journey|experience|erfahrung|laufbahn)/.test(normalized)) {
+    return pickLocalizedText(language, {
+      en: `Anastasiia completed full-stack development training at IT Career Hub Berlin from December 2024 to December 2025. She also gained frontend experience at Kunst Schule Berlin from January 2026 to April 2026, which strengthened her practical work with interfaces, layout, and presentation.`,
+      ru: `Анастасия прошла full-stack обучение в IT Career Hub Berlin с декабря 2024 по декабрь 2025 года. Также у неё был frontend-опыт в Kunst Schule Berlin с января 2026 по апрель 2026 года, что усилило её практические навыки работы с интерфейсами, вёрсткой и визуальной подачей.`,
+      de: `Anastasiia absolvierte von Dezember 2024 bis Dezember 2025 eine Full-Stack-Weiterbildung bei IT Career Hub Berlin. Zusätzlich sammelte sie von Januar 2026 bis April 2026 Frontend-Erfahrung an der Kunst Schule Berlin, was ihre praktische Arbeit mit Interfaces, Layout und visueller Darstellung gestärkt hat.`,
+    });
+  }
+
   if (/(tech|stack|skill|react|typescript|node|docker|mongo|mysql)/.test(normalized)) {
     return pickLocalizedText(language, {
       en: `Thank you for your question. Anastasiia works with a modern full-stack toolkit that includes React, Redux, JavaScript, TypeScript, Node.js, Express, HTML/CSS, MySQL, MongoDB, and Docker. She enjoys building interfaces that feel clear and intentional while keeping the technical foundation reliable.`,
@@ -69,19 +87,11 @@ function buildFallbackReply(input: string) {
     });
   }
 
-  if (/(relocat|remote|onsite|move|berlin|germany|location)/.test(normalized)) {
-    return pickLocalizedText(language, {
-      en: `Anastasiia is based in Oschatz, Germany, and she is open to relocation as well as new international opportunities. She is building her career in modern full-stack development and is genuinely interested in teams where she can grow and contribute.`,
-      ru: `Анастасия живёт в Oschatz, Германия, и открыта к релокации, а также к новым международным возможностям. Она развивает карьеру в современном full-stack направлении и заинтересована в командах, где сможет расти и приносить пользу.`,
-      de: `Anastasiia lebt in Oschatz in Deutschland und ist offen für Relocation sowie für neue internationale Möglichkeiten. Sie entwickelt sich im modernen Full-Stack-Bereich weiter und sucht nach Teams, in denen sie wachsen und beitragen kann.`,
-    });
-  }
-
   // Дефолтный ответ если ничего не подошло
   return pickLocalizedText(language, {
-    en: `Thank you for your question. Anastasiia Sulollari is a full-stack developer based in Germany with experience in React, TypeScript, and Node.js. How can I help you find out more about her work?`,
-    ru: `Спасибо за вопрос. Анастасия Сулоллари — full-stack разработчик из Германии с опытом работы с React, TypeScript и Node.js. Чем я могу помочь вам узнать больше о её работах?`,
-    de: `Vielen Dank für Ihre Frage. Anastasiia Sulollari ist eine Full-Stack-Entwicklerin aus Deutschland mit Erfahrung in React, TypeScript und Node.js. Wie kann ich Ihnen helfen, mehr über ihre Arbeit zu erfahren?`,
+    en: `Thank you for your question. Anastasiia Sulollari is a full-stack developer based in Germany, ready for relocation across Germany, with experience in React, TypeScript, Node.js, and frontend work at Kunst Schule Berlin from January 2026 to April 2026. How can I help you find out more about her work?`,
+    ru: `Спасибо за вопрос. Анастасия Сулоллари — full-stack разработчик из Германии, готовая к релокации по всей Германии, с опытом работы с React, TypeScript, Node.js и frontend-опытом в Kunst Schule Berlin с января 2026 по апрель 2026 года. Чем я могу помочь вам узнать больше о её работе?`,
+    de: `Vielen Dank für Ihre Frage. Anastasiia Sulollari ist eine Full-Stack-Entwicklerin aus Deutschland, bereit für Relocation innerhalb Deutschlands, mit Erfahrung in React, TypeScript, Node.js und Frontend-Arbeit an der Kunst Schule Berlin von Januar 2026 bis April 2026. Wie kann ich Ihnen helfen, mehr über ihre Arbeit zu erfahren?`,
   });
 }
 

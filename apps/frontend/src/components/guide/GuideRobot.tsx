@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import './GuideRobot.css';
 
 type GuideSection = {
@@ -12,14 +13,6 @@ type RobotPosition = {
   x: number;
   y: number;
 };
-
-const GUIDE_SECTIONS: GuideSection[] = [
-  { id: 'about', label: 'About' },
-  { id: 'skills', label: 'Skills' },
-  { id: 'experience', label: 'Experience' },
-  { id: 'ai-section', label: 'AI Twin' },
-  { id: 'contact', label: 'Contact' },
-];
 
 const SECTION_TEXT_SELECTORS = [
   '.section-title',
@@ -55,10 +48,19 @@ function getStepDelay(text: string, reducedMotion: boolean) {
 }
 
 function GuideRobot() {
+  const { t, i18n } = useTranslation();
+  const guideSections: GuideSection[] = [
+    { id: 'about', label: t('guide.sections.about') },
+    { id: 'skills', label: t('guide.sections.skills') },
+    { id: 'experience', label: t('guide.sections.experience') },
+    { id: 'ai-section', label: t('guide.sections.aiTwin') },
+    { id: 'contact', label: t('guide.sections.contact') },
+  ];
+
   const [robotState, setRobotState] = useState<RobotState>('sleeping');
   const [isTouring, setIsTouring] = useState(false);
   const [activeSectionId, setActiveSectionId] = useState<string | null>(null);
-  const [caption, setCaption] = useState('Hello, I am Nova, your guide. Press Tour and I will gently show you around.');
+  const [caption, setCaption] = useState(t('guide.idleCaption'));
   const [reducedMotion, setReducedMotion] = useState(false);
   const [robotPosition, setRobotPosition] = useState<RobotPosition>({ x: 0, y: 0 });
 
@@ -73,6 +75,10 @@ function GuideRobot() {
       x: window.innerWidth - robotWidth - (compact ? 12 : 24),
       y: window.innerHeight - (compact ? 220 : 240),
     };
+  }
+
+  function getSectionLabel(sectionId: string | null) {
+    return guideSections.find((section) => section.id === sectionId)?.label ?? t('guide.meta.tourStop');
   }
 
   function getPositionForSection(sectionId: string | null) {
@@ -112,7 +118,7 @@ function GuideRobot() {
 
   function buildSectionNarration(sectionId: string) {
     const section = document.getElementById(sectionId);
-    if (!section) return 'Section not found.';
+    if (!section) return t('guide.sectionNotFound');
 
     const snippets = new Set<string>();
     section.querySelectorAll<HTMLElement>(SECTION_TEXT_SELECTORS).forEach((node) => {
@@ -121,7 +127,7 @@ function GuideRobot() {
     });
 
     const narration = Array.from(snippets).slice(0, 6).join('. ');
-    return narration ? `${narration}.` : 'Ready to explore.';
+    return narration ? `${narration}.` : t('guide.readyToExplore');
   }
 
   function clearScheduledStep() {
@@ -167,12 +173,12 @@ function GuideRobot() {
       setActiveSectionId(null);
       syncGuideFocus(null);
       setRobotPosition(getDefaultPosition());
-      setCaption('Tour complete. Press Tour anytime for another guided walkthrough.');
+      setCaption(t('guide.tourComplete'));
       setRobotState('sleeping');
       return;
     }
 
-    const section = GUIDE_SECTIONS.find((item) => item.id === nextId);
+    const section = guideSections.find((item) => item.id === nextId);
     if (!section) {
       continueTour();
       return;
@@ -201,22 +207,25 @@ function GuideRobot() {
     cancelTour(false);
     setRobotState('awake');
     setIsTouring(true);
-    tourQueueRef.current = GUIDE_SECTIONS.map((section) => section.id);
+    tourQueueRef.current = guideSections.map((section) => section.id);
 
-    announce(
-      "Hello, I am Nova, Anastasiia's guide robot. I will walk you through the most important parts of this site.",
-      {
-        bubbleText: 'Hello, I am Nova. I am ready to guide you through the most important parts of this site.',
-        onEnd: () => continueTour(),
-      },
-    );
+    announce(t('guide.intro'), {
+      bubbleText: t('guide.introBubble'),
+      onEnd: () => continueTour(),
+    });
   }
 
   function stopTour() {
     cancelTour(true);
     setRobotState('sleeping');
-    setCaption('Tour stopped. Press Tour whenever you would like a guided walkthrough.');
+    setCaption(t('guide.tourStopped'));
   }
+
+  useEffect(() => {
+    if (!isTouring) {
+      setCaption(t('guide.idleCaption'));
+    }
+  }, [i18n.language, isTouring, t]);
 
   useEffect(() => {
     const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
@@ -250,26 +259,26 @@ function GuideRobot() {
   }, [activeSectionId]);
 
   const statusLabel = isTouring
-    ? 'ON TOUR'
+    ? t('guide.status.onTour')
     : robotState === 'awake'
-      ? 'AWAKE'
-      : 'SLEEPING';
+      ? t('guide.status.awake')
+      : t('guide.status.sleeping');
 
   return (
     <aside
       className={`guide-robot ${robotState} ${isTouring ? 'touring' : ''}`}
-      aria-label="Accessibility tour guide robot"
+      aria-label={t('guide.ariaLabel')}
       style={{ transform: `translate3d(${robotPosition.x}px, ${robotPosition.y}px, 0)` }}
     >
       <div className="guide-bubble" aria-live="polite">
         <span className="guide-status">{statusLabel}</span>
         <p>{caption}</p>
         <div className="guide-bubble-meta">
-          <span>{isTouring ? 'guided tour' : 'ready'}</span>
+          <span>{isTouring ? t('guide.meta.guidedTour') : t('guide.meta.ready')}</span>
           <span>
             {activeSectionId
-              ? GUIDE_SECTIONS.find((section) => section.id === activeSectionId)?.label ?? 'Tour stop'
-              : 'Whole site'}
+              ? getSectionLabel(activeSectionId)
+              : t('guide.meta.wholeSite')}
           </span>
         </div>
       </div>
@@ -280,14 +289,14 @@ function GuideRobot() {
           type="button"
           onClick={startFullTour}
         >
-          Tour
+          {t('guide.buttons.tour')}
         </button>
         <button
           className="guide-action-button guide-action-button-danger"
           type="button"
           onClick={stopTour}
         >
-          Stop
+          {t('guide.buttons.stop')}
         </button>
       </div>
 
@@ -326,8 +335,8 @@ function GuideRobot() {
 
       <div className="guide-caption-line">
         {isTouring
-          ? `touring: ${GUIDE_SECTIONS.find((section) => section.id === activeSectionId)?.label ?? '...'}` 
-          : 'ready to guide you'}
+          ? t('guide.captionLine.touring', { section: getSectionLabel(activeSectionId) })
+          : t('guide.captionLine.ready')}
       </div>
     </aside>
   );

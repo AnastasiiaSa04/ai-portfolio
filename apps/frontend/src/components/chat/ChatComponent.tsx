@@ -1,22 +1,19 @@
 import { useEffect, useRef, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { ChatMessage, ChatRequest, ChatResponse } from '@portfolio/shared';
 import './Chat.css';
 import { Typewriter } from '../typewriter/Typewriter';
 
 const API_BASE_URL = (import.meta.env.VITE_API_URL || 'http://localhost:3001').replace(/\/$/, '');
 
-const QUICK_PROMPTS = [
-  "Tell me about Anastasiia's tech stack",
-  "How would you describe Anastasiia professionally?",
-  "Is she open for relocation?",
-  "Tell me about her AI and frontend experience"
-];
-
 const ChatComponent: React.FC = () => {
+  const { t } = useTranslation();
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
+
+  const quickPrompts = t('chat.quickPrompts', { returnObjects: true }) as string[];
 
   useEffect(() => {
     scrollRef.current?.scrollTo(0, scrollRef.current.scrollHeight);
@@ -34,7 +31,7 @@ const ChatComponent: React.FC = () => {
       const data = await response.json();
 
       if (!response.ok) {
-        throw new Error(data.error || 'Server error');
+        throw new Error(data.error || t('chat.error'));
       }
 
       setMessages([...currentMessages, { role: 'assistant', content: (data as ChatResponse).reply }]);
@@ -42,20 +39,23 @@ const ChatComponent: React.FC = () => {
       console.error('AI Error:', error);
       const message = error instanceof Error
         ? error.message
-        : 'The assistant is temporarily unavailable.';
-      setMessages([...currentMessages, { role: 'assistant', content: `AI assistant: ${message}` }]);
+        : t('chat.error');
+      setMessages([
+        ...currentMessages,
+        { role: 'assistant', content: `${t('chat.errorLabel')}: ${message}` },
+      ]);
     } finally {
       setIsLoading(false);
     }
   };
 
-  const sendMessage = async (e: React.FormEvent) => {
-    e.preventDefault();
+  const sendMessage = async (event: React.FormEvent) => {
+    event.preventDefault();
     if (!input.trim() || isLoading) return;
 
     const userMsg: ChatMessage = { role: 'user', content: input };
     const newMessages = [...messages, userMsg];
-    
+
     setMessages(newMessages);
     setInput('');
     await executeChat(newMessages);
@@ -66,7 +66,7 @@ const ChatComponent: React.FC = () => {
 
     const userMsg: ChatMessage = { role: 'user', content: prompt };
     const newMessages = [...messages, userMsg];
-    
+
     setMessages(newMessages);
     await executeChat(newMessages);
   };
@@ -74,47 +74,51 @@ const ChatComponent: React.FC = () => {
   return (
     <div className="chat-container">
       <div className="chat-header">
-        <span>AI_AGENT: ANASTASIIA_v1.0</span>
-        <span className="chat-status">● LIVE</span>
+        <span>{t('chat.agentLabel')}</span>
+        <span className="chat-status">● {t('chat.live')}</span>
       </div>
 
       <div className="chat-messages" ref={scrollRef}>
         {messages.length === 0 && (
-          <p className="ai-msg">"Hello, I'm Anastasiia's AI assistant. I'd be happy to tell you more about her skills, projects, experience, and professional strengths in a thoughtful and detailed way."</p>
+          <p className="ai-msg">{t('chat.welcome')}</p>
         )}
-        
-        {messages.map((m, i) => (
-          <div key={i} className={m.role === 'user' ? 'message-user' : 'message-ai'}>
-            <strong>{m.role === 'user' ? '> GUEST: ' : '> AI: '}</strong>
-            {m.role === 'assistant' ? (
-              <Typewriter text={m.content} />
+
+        {messages.map((message, index) => (
+          <div key={index} className={message.role === 'user' ? 'message-user' : 'message-ai'}>
+            <strong>
+              {message.role === 'user'
+                ? `> ${t('chat.guestLabel')}: `
+                : `> ${t('chat.assistantLabel')}: `}
+            </strong>
+            {message.role === 'assistant' ? (
+              <Typewriter text={message.content} />
             ) : (
-              m.content
+              message.content
             )}
           </div>
         ))}
-        {isLoading && <p className="message-ai">_ Analyzing data...</p>}
+        {isLoading && <p className="message-ai">_ {t('chat.loading')}</p>}
       </div>
 
       <div className="quick-prompts">
-        {QUICK_PROMPTS.map(p => (
-          <button 
-            key={p} 
+        {quickPrompts.map((prompt) => (
+          <button
+            key={prompt}
             type="button"
-            onClick={() => handleQuickPrompt(p)} 
+            onClick={() => handleQuickPrompt(prompt)}
             className="prompt-btn"
             disabled={isLoading}
           >
-            {p}
+            {prompt}
           </button>
         ))}
       </div>
 
       <form className="chat-input-area" onSubmit={sendMessage}>
-        <input 
-          placeholder={isLoading ? "Preparing a thoughtful reply..." : "Ask about skills, experience, projects, AI work, or career goals..."}
+        <input
+          placeholder={isLoading ? t('chat.placeholderLoading') : t('chat.placeholder')}
           value={input}
-          onChange={(e) => setInput(e.target.value)}
+          onChange={(event) => setInput(event.target.value)}
           disabled={isLoading}
         />
       </form>

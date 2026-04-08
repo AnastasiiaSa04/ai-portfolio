@@ -4,20 +4,22 @@ import LanguageDetector from 'i18next-browser-languagedetector';
 
 import en from './locales/en.json';
 import de from './locales/de.json';
-import ru from './locales/ru.json';
-import ua from './locales/ua.json';
 
 i18n
   .use(LanguageDetector)
   .use(initReactI18next)
   .init({
+    supportedLngs: ['en', 'de'],
     resources: {
       en: { translation: en },
       de: { translation: de },
-      ru: { translation: ru },
-      ua: { translation: ua },
     },
-    fallbackLng: 'de',
+    fallbackLng: 'en',
+    load: 'languageOnly',
+    detection: {
+      order: ['localStorage', 'navigator', 'htmlTag'],
+      caches: ['localStorage'],
+    },
     interpolation: {
       escapeValue: false,
     },

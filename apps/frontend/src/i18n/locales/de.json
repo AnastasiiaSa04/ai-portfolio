@@ -1,0 +1,164 @@
+{
+  "nav": {
+    "about": "Uber mich",
+    "skills": "Skills",
+    "experience": "Erfahrung",
+    "aiTwin": "KI-Zwilling",
+    "contact": "Kontakt"
+  },
+  "languageSwitcher": {
+    "label": "Sprachauswahl"
+  },
+  "hero": {
+    "tag": "Full-Stack Developerin · KI-Spezialistin",
+    "title": "Die Zukunft mit Code und Intelligenz gestalten.",
+    "description": "Spezialisiert auf produktionsreife Webanwendungen mit integrierten KI-Funktionen. In Deutschland ansassig und bereit fur Relocation innerhalb Deutschlands.",
+    "cta": {
+      "connect": "Kontakt",
+      "resume": "Lebenslauf"
+    },
+    "scroll": "Weiter nach unten"
+  },
+  "about": {
+    "label": "Profil",
+    "title": "Wer ich bin",
+    "paragraph1": "Ich bin Full-Stack-Developerin in Deutschland und verbinde durchdachtes Frontend-Handwerk mit zuverlassiger Backend-Architektur.",
+    "paragraph2": "Ich bringe Fuhrungserfahrung, Anpassungsfahigkeit und einen klaren Blick fur Details in jedes Projekt ein.",
+    "stats": {
+      "leadership": "Jahre Fuhrungserfahrung",
+      "languages": "Sprachen"
+    }
+  },
+  "skills": {
+    "label": "Technisches Arsenal",
+    "title": "Skills",
+    "categories": {
+      "frontend": "Frontend",
+      "backend": "Backend",
+      "aiTools": "KI & Tools"
+    },
+    "items": {
+      "aiIntegration": "KI-Integration"
+    }
+  },
+  "ai": {
+    "label": "KI-Integration",
+    "title": "Mein KI-Zwilling",
+    "intro1": "Diese Seite zeigt meine KI-Skills nicht nur, sie demonstriert sie live durch den Assistenten direkt neben meinem Namen im Hero-Bereich.",
+    "intro2": "Frag ihn nach meiner Arbeit, meinem Stack, meiner Relocation-Bereitschaft innerhalb Deutschlands oder meiner Frontend-Erfahrung an der Kunst Schule Berlin von Januar 2026 bis April 2026.",
+    "link": "Assistenten im Hero-Bereich offnen",
+    "features": [
+      "LLM-Integration mit Live-Antworten",
+      "Kontextbezogene Antworten zu meinem Profil",
+      "Einfach in Produkte und Websites integrierbar",
+      "Sicheres und zustandsloses Interaktionsdesign"
+    ]
+  },
+  "experience": {
+    "label": "Zeitlinie",
+    "title": "Erfahrung",
+    "items": [
+      {
+        "date": "JANUAR 2026 - APRIL 2026",
+        "role": "Frontend-Erfahrung",
+        "company": "Kunst Schule Berlin - Berlin, Deutschland",
+        "description": "Frontend-Erfahrung an der Kunst Schule Berlin von Januar 2026 bis April 2026."
+      },
+      {
+        "date": "DEZEMBER 2024 - DEZEMBER 2025",
+        "role": "IT Career Hub",
+        "company": "Berlin, Deutschland - Full-Stack-Weiterbildung",
+        "description": "Umfassendes Full-Stack-Programm mit React, Node.js, TypeScript, Docker und Cloud-Plattformen. Fokus auf produktionsreifen und KI-integrierten Webanwendungen."
+      },
+      {
+        "date": "JUNI 2023 - JUNI 2024",
+        "role": "Ehrenamtliche Dolmetscherin",
+        "company": "Deutsches Rotes Kreuz (DRK), Deutschland",
+        "description": "Sprachmittlung DE <-> RU/UK in medizinischen und sozialen Einrichtungen. Unterstutzung bei digitalen Antragen, Behordenformularen und interkultureller Kommunikation."
+      },
+      {
+        "date": "MAI 2013 - DEZEMBER 2019",
+        "role": "Direktorin",
+        "company": "Rosinant Riding School, Ukraine",
+        "description": "Gesamte Unternehmensfuhrung: Teamleitung, Turnierorganisation, PR und Budgetplanung. Aufbau einer starken Community und Leitung eines vielseitigen Teams."
+      },
+      {
+        "date": "SEPTEMBER 2010 - MAI 2015",
+        "role": "Staatliche Medizinische Universitat",
+        "company": "Ukraine - Ausbildung",
+        "description": "Akademische Grundlage in analytischem Denken, Disziplin und wissenschaftlicher Genauigkeit, die heute meine systematische und prazise Arbeitsweise in der Softwareentwicklung pragt."
+      }
+    ]
+  },
+  "contact": {
+    "label": "Lass uns sprechen",
+    "title": "Kontakt",
+    "links": {
+      "email": "E-Mail",
+      "github": "GitHub",
+      "linkedin": "LinkedIn"
+    },
+    "opportunities": "Ich bin aktuell offen fur Vollzeitstellen, Freelance-Projekte und Beratung rund um KI-Integration.",
+    "location": "Deutschland, Oschatz - Bereit fur Relocation innerhalb Deutschlands und offen fur Remote-Zusammenarbeit.",
+    "availability": "VERFUGBAR FUR NEUE PROJEKTE"
+  },
+  "footer": {
+    "copyright": "(c) 2026 ANASTASIIA SULOLLARI",
+    "tagline": "FULL-STACK · KI-POWERED · ZUKUNFTSORIENTIERT",
+    "country": "DEUTSCHLAND"
+  },
+  "chat": {
+    "agentLabel": "AI_AGENT: ANASTASIIA_v1.0",
+    "live": "AKTIV",
+    "welcome": "Hallo, ich bin Anastasiias KI-Assistent. Ich kann uber ihre Skills, Projekte, Relocation innerhalb Deutschlands, Frontend-Erfahrung an der Kunst Schule Berlin und ihre professionellen Starken sprechen.",
+    "loading": "Profildaten werden analysiert...",
+    "placeholderLoading": "Eine durchdachte Antwort wird vorbereitet...",
+    "placeholder": "Frag nach Skills, Relocation innerhalb Deutschlands, Frontend-Erfahrung an der Kunst Schule Berlin, KI-Projekten oder Karrierezielen...",
+    "quickPrompts": [
+      "Erzahl mir von Anastasiias Tech-Stack",
+      "Ist sie fur Relocation innerhalb Deutschlands bereit?",
+      "Erzahl mir von ihrer Frontend-Erfahrung an der Kunst Schule Berlin",
+      "Wie wurdest du Anastasiia professionell beschreiben?"
+    ],
+    "guestLabel": "GAST",
+    "assistantLabel": "KI",
+    "error": "Der Assistent ist vorubergehend nicht verfugbar.",
+    "errorLabel": "KI-Assistent"
+  },
+  "guide": {
+    "sections": {
+      "about": "Uber mich",
+      "skills": "Skills",
+      "experience": "Erfahrung",
+      "aiTwin": "KI-Zwilling",
+      "contact": "Kontakt"
+    },
+    "idleCaption": "Hallo, ich bin Nova, dein Guide. Drucke auf Tour und ich fuhre dich sanft durch die Seite.",
+    "sectionNotFound": "Bereich nicht gefunden.",
+    "readyToExplore": "Bereit zum Erkunden.",
+    "tourComplete": "Die Tour ist abgeschlossen. Starte sie jederzeit erneut.",
+    "intro": "Hallo, ich bin Nova, Anastasiias Guide-Roboter. Ich fuhre dich durch die wichtigsten Bereiche dieser Website.",
+    "introBubble": "Hallo, ich bin Nova. Ich bin bereit, dich durch die wichtigsten Bereiche dieser Website zu fuhren.",
+    "tourStopped": "Die Tour wurde gestoppt. Starte sie jederzeit erneut, wenn du eine Fuhrung mochtest.",
+    "status": {
+      "onTour": "AUF TOUR",
+      "awake": "AKTIV",
+      "sleeping": "RUHEMODUS"
+    },
+    "meta": {
+      "guidedTour": "gefuhte tour",
+      "ready": "bereit",
+      "wholeSite": "Gesamte Seite",
+      "tourStop": "Tour-Stopp"
+    },
+    "buttons": {
+      "tour": "Tour",
+      "stop": "Stop"
+    },
+    "captionLine": {
+      "touring": "tour: {{section}}",
+      "ready": "bereit, dich zu fuhren"
+    },
+    "ariaLabel": "Barrierefreier Guide-Roboter"
+  }
+}

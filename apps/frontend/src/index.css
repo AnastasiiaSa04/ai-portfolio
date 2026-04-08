@@ -156,6 +156,12 @@ nav {
   list-style: none;
 }
 
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
 .nav-links a {
   color: var(--text-dim);
   text-decoration: none;
@@ -179,6 +185,43 @@ nav {
 .nav-links a:hover { color: var(--cyan); text-shadow: var(--glow); }
 .nav-links a:hover::after { width: 100%; }
 
+.language-switcher {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: rgba(4, 13, 26, 0.82);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.24);
+}
+
+.language-button {
+  border: 0;
+  background: transparent;
+  color: var(--text-dim);
+  padding: 7px 12px;
+  border-radius: 999px;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.language-button:hover {
+  color: #fff;
+}
+
+.language-button.active {
+  color: #021018;
+  background: var(--cyan);
+  box-shadow: var(--glow);
+}
+
 @media (max-width: 1024px) {
   body {
     cursor: auto;
@@ -195,6 +238,10 @@ nav {
 
   .nav-links {
     gap: 20px;
+  }
+
+  .nav-actions {
+    gap: 14px;
   }
 
   .cursor,
@@ -218,9 +265,18 @@ nav {
     letter-spacing: 3px;
   }
 
+  .nav-actions {
+    flex-direction: column;
+    align-items: flex-end;
+  }
+
   .nav-links {
     gap: 12px;
     flex-wrap: wrap;
     justify-content: flex-end;
+  }
+
+  .language-button {
+    padding: 6px 10px;
   }
 }
