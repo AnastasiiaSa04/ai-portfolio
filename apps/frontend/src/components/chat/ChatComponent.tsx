@@ -6,10 +6,10 @@ import { Typewriter } from '../typewriter/Typewriter';
 const API_BASE_URL = (import.meta.env.VITE_API_URL || 'http://localhost:3001').replace(/\/$/, '');
 
 const QUICK_PROMPTS = [
-  "What is your tech stack?",
-  "Are you open for relocation?",
-  "Show me your AI experience",
-  "Download Resume"
+  "Tell me about Anastasiia's tech stack",
+  "How would you describe Anastasiia professionally?",
+  "Is she open for relocation?",
+  "Tell me about her AI and frontend experience"
 ];
 
 const ChatComponent: React.FC = () => {
@@ -80,7 +80,7 @@ const ChatComponent: React.FC = () => {
 
       <div className="chat-messages" ref={scrollRef}>
         {messages.length === 0 && (
-          <p className="ai-msg">_ Привет! Я — ИИ-близнец Анастасии. Спроси меня о её стеке или опыте.</p>
+          <p className="ai-msg">"Hello, I'm Anastasiia's AI assistant. I'd be happy to tell you more about her skills, projects, experience, and professional strengths in a thoughtful and detailed way."</p>
         )}
         
         {messages.map((m, i) => (
@@ -112,7 +112,7 @@ const ChatComponent: React.FC = () => {
 
       <form className="chat-input-area" onSubmit={sendMessage}>
         <input 
-          placeholder={isLoading ? "Processing..." : "Type command..."}
+          placeholder={isLoading ? "Preparing a thoughtful reply..." : "Ask about skills, experience, projects, AI work, or career goals..."}
           value={input}
           onChange={(e) => setInput(e.target.value)}
           disabled={isLoading}

@@ -36,7 +36,6 @@ function App() {
   let particles: BackgroundParticle[] = [];
 
   const initParticles = () => {
-    // Меньше частиц — лучше производительность
     const count = Math.min(60, Math.floor(window.innerWidth / 20));
     particles = Array.from({ length: count }, () => ({
       x: Math.random() * canvas.width,
@@ -54,12 +53,11 @@ function App() {
     initParticles();
   };
 
-  const CONNECTION_DISTANCE = 90; // уменьшили с 100
+  const CONNECTION_DISTANCE = 90;
 
   const drawFrame = () => {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-    // Сетка
     ctx.strokeStyle = 'rgba(0, 245, 255, 0.04)';
     ctx.lineWidth = 1;
     for (let x = 0; x < canvas.width; x += 80) {
@@ -69,7 +67,6 @@ function App() {
       ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(canvas.width, y); ctx.stroke();
     }
 
-    // Частицы + связи
     const len = particles.length;
     for (let i = 0; i < len; i++) {
       const p = particles[i];
@@ -83,12 +80,10 @@ function App() {
       ctx.fillStyle = `rgba(0,245,255,${p.alpha})`;
       ctx.fill();
 
-      // Только половина связей — в 2 раза быстрее
       for (let j = i + 1; j < len; j++) {
         const q = particles[j];
         const dx = p.x - q.x;
         const dy = p.y - q.y;
-        // Избегаем sqrt пока возможно
         if (Math.abs(dx) > CONNECTION_DISTANCE || Math.abs(dy) > CONNECTION_DISTANCE) continue;
         const dist = Math.hypot(dx, dy);
         if (dist < CONNECTION_DISTANCE) {

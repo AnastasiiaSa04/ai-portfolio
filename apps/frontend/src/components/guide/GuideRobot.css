@@ -9,6 +9,7 @@
   align-items: center;
   gap: 10px;
   pointer-events: none;
+  perspective: 1600px;
   transition: transform 0.75s cubic-bezier(0.2, 0.9, 0.2, 1);
 }
 
@@ -59,6 +60,17 @@
 .guide-action-button-primary:hover {
   background: rgba(0, 245, 255, 0.16);
   border-color: rgba(0, 245, 255, 0.42);
+}
+
+.guide-action-button-voice {
+  border: 1px solid rgba(57, 255, 20, 0.28);
+  background: rgba(57, 255, 20, 0.09);
+  box-shadow: 0 0 14px rgba(57, 255, 20, 0.12);
+}
+
+.guide-action-button-voice:hover {
+  background: rgba(57, 255, 20, 0.14);
+  border-color: rgba(57, 255, 20, 0.42);
 }
 
 .guide-action-button-danger {
@@ -145,13 +157,26 @@
 
 .guide-avatar {
   position: relative;
-  width: 108px;
-  min-height: 136px;
+  width: 132px;
+  min-height: 192px;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 0;
+  transform-style: preserve-3d;
   animation: guideFloat 3.2s ease-in-out infinite;
+}
+
+.guide-hover-shadow {
+  position: absolute;
+  bottom: 4px;
+  left: 50%;
+  width: 108px;
+  height: 22px;
+  border-radius: 999px;
+  transform: translateX(-50%) translateZ(-34px);
+  background: radial-gradient(circle, rgba(0, 245, 255, 0.2), rgba(0, 0, 0, 0));
+  filter: blur(10px);
 }
 
 .guide-antenna {
@@ -159,6 +184,7 @@
   height: 20px;
   background: linear-gradient(180deg, var(--green), var(--cyan));
   position: relative;
+  transform: translateZ(16px);
 }
 
 .guide-antenna::after {
@@ -175,69 +201,247 @@
 }
 
 .guide-head {
+  position: relative;
   width: 76px;
   height: 58px;
   margin-top: 6px;
   border-radius: 22px;
-  border: 1px solid rgba(0, 245, 255, 0.24);
-  background: rgba(7, 20, 40, 0.96);
-  box-shadow: inset 0 0 18px rgba(0, 245, 255, 0.08);
+  border: 1px solid rgba(142, 250, 255, 0.28);
+  background:
+    linear-gradient(160deg, rgba(173, 245, 255, 0.3), rgba(34, 63, 107, 0) 34%),
+    linear-gradient(135deg, rgba(14, 26, 44, 0.98), rgba(4, 12, 26, 0.98));
+  box-shadow:
+    inset -8px -10px 18px rgba(0, 0, 0, 0.34),
+    inset 8px 10px 18px rgba(167, 250, 255, 0.08),
+    0 18px 34px rgba(3, 10, 24, 0.45),
+    0 0 22px rgba(0, 245, 255, 0.12);
+  transform: rotateX(10deg) rotateY(-18deg) translateZ(18px);
+  transform-style: preserve-3d;
+}
+
+.guide-head::before,
+.guide-head::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 22px;
+  pointer-events: none;
+}
+
+.guide-head::before {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0));
+  transform: translateZ(8px);
+  opacity: 0.8;
+}
+
+.guide-head::after {
+  right: -8px;
+  left: auto;
+  width: 14px;
+  border-radius: 0 18px 18px 0;
+  background: linear-gradient(180deg, rgba(16, 27, 42, 0.98), rgba(2, 10, 18, 0.98));
+  transform: rotateY(82deg) translateZ(8px);
+  transform-origin: right center;
+}
+
+.guide-faceplate {
+  width: 56px;
+  height: 34px;
+  margin: 12px auto 0;
+  border-radius: 16px;
+  border: 1px solid rgba(0, 245, 255, 0.16);
+  background:
+    radial-gradient(circle at 20% 18%, rgba(255, 255, 255, 0.22), rgba(255, 255, 255, 0) 36%),
+    linear-gradient(180deg, rgba(8, 33, 51, 0.95), rgba(2, 13, 28, 0.96));
+  box-shadow:
+    inset 0 0 16px rgba(0, 245, 255, 0.12),
+    0 10px 18px rgba(0, 0, 0, 0.18);
+  transform: translateZ(10px);
 }
 
 .guide-eyes {
   display: flex;
   justify-content: center;
   gap: 14px;
-  margin-top: 18px;
+  padding-top: 10px;
 }
 
 .guide-eye {
+  position: relative;
   width: 10px;
   height: 10px;
   border-radius: 999px;
   background: var(--cyan);
-  box-shadow: 0 0 16px rgba(0, 245, 255, 0.55);
+  box-shadow:
+    0 0 16px rgba(0, 245, 255, 0.55),
+    0 0 28px rgba(0, 245, 255, 0.18);
+}
+
+.guide-eye::after {
+  content: '';
+  position: absolute;
+  top: 1px;
+  left: 2px;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.85);
+  filter: blur(0.4px);
 }
 
 .guide-mouth {
   width: 28px;
   height: 4px;
-  margin: 10px auto 0;
+  margin: 8px auto 0;
   border-radius: 999px;
   background: rgba(0, 245, 255, 0.34);
+  box-shadow: 0 0 12px rgba(0, 245, 255, 0.18);
+}
+
+.guide-shoulders {
+  position: relative;
+  width: 104px;
+  height: 18px;
+  margin-top: 6px;
+  transform-style: preserve-3d;
+}
+
+.guide-arm {
+  position: absolute;
+  top: 0;
+  width: 18px;
+  height: 54px;
+  border-radius: 999px;
+  background:
+    linear-gradient(180deg, rgba(154, 244, 255, 0.22), rgba(11, 36, 58, 0.94) 28%, rgba(4, 18, 33, 0.98));
+  border: 1px solid rgba(127, 235, 255, 0.2);
+  box-shadow:
+    inset 0 -10px 14px rgba(0, 0, 0, 0.28),
+    0 12px 18px rgba(0, 0, 0, 0.22);
+}
+
+.guide-arm-left {
+  left: 4px;
+  transform: rotateZ(16deg) rotateY(32deg) translateZ(-2px);
+}
+
+.guide-arm-right {
+  right: 4px;
+  transform: rotateZ(-16deg) rotateY(-32deg) translateZ(-2px);
 }
 
 .guide-body {
-  width: 62px;
-  height: 34px;
-  margin-top: 10px;
+  position: relative;
+  width: 70px;
+  height: 48px;
+  margin-top: -2px;
   border-radius: 18px;
-  border: 1px solid rgba(0, 245, 255, 0.22);
-  background: rgba(0, 245, 255, 0.05);
+  border: 1px solid rgba(0, 245, 255, 0.24);
+  background:
+    linear-gradient(160deg, rgba(177, 249, 255, 0.18), rgba(177, 249, 255, 0) 35%),
+    linear-gradient(180deg, rgba(7, 23, 41, 0.98), rgba(4, 15, 30, 0.98));
   display: flex;
   flex-direction: column;
   justify-content: center;
   gap: 6px;
-  padding: 0 14px;
+  padding: 0 16px;
+  box-shadow:
+    inset -8px -8px 16px rgba(0, 0, 0, 0.28),
+    inset 10px 10px 18px rgba(255, 255, 255, 0.04),
+    0 18px 24px rgba(3, 10, 24, 0.38);
+  transform: rotateX(10deg) rotateY(-14deg) translateZ(10px);
+  transform-style: preserve-3d;
+}
+
+.guide-body::before,
+.guide-body::after {
+  content: '';
+  position: absolute;
+  pointer-events: none;
+}
+
+.guide-body::before {
+  inset: 3px;
+  border-radius: 15px;
+  border: 1px solid rgba(0, 245, 255, 0.1);
+  transform: translateZ(8px);
+}
+
+.guide-body::after {
+  right: -8px;
+  top: 4px;
+  width: 12px;
+  height: 40px;
+  border-radius: 0 14px 14px 0;
+  background: linear-gradient(180deg, rgba(15, 28, 44, 0.98), rgba(2, 10, 20, 0.98));
+  transform: rotateY(84deg) translateZ(4px);
+  transform-origin: right center;
+}
+
+.guide-heart-light {
+  position: absolute;
+  top: 10px;
+  left: 12px;
+  width: 16px;
+  height: 16px;
+  display: grid;
+  place-items: center;
+  transform: translateZ(14px);
+  box-shadow:
+    0 0 12px rgba(255, 62, 104, 0.2),
+    0 0 22px rgba(255, 38, 82, 0.12);
+  animation: guideHeartBeat 1.9s ease-in-out infinite;
+}
+
+.guide-heart-icon {
+  width: 16px;
+  height: 16px;
+  display: block;
+  fill: #ff4b63;
+  filter:
+    drop-shadow(0 0 4px rgba(255, 92, 116, 0.55))
+    drop-shadow(0 0 10px rgba(255, 57, 99, 0.28));
 }
 
 .guide-body-line {
-  height: 2px;
+  position: relative;
+  z-index: 1;
+  height: 3px;
   border-radius: 999px;
-  background: rgba(0, 245, 255, 0.36);
+  background: linear-gradient(90deg, rgba(0, 245, 255, 0.18), rgba(0, 245, 255, 0.55), rgba(255, 255, 255, 0.3));
+}
+
+.guide-platform {
+  width: 108px;
+  height: 28px;
+  margin-top: 8px;
+  border-radius: 999px;
+  background:
+    radial-gradient(circle at 30% 26%, rgba(0, 245, 255, 0.2), rgba(0, 245, 255, 0) 42%),
+    linear-gradient(180deg, rgba(11, 22, 38, 0.95), rgba(3, 10, 20, 0.98));
+  border: 1px solid rgba(0, 245, 255, 0.14);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    0 16px 26px rgba(0, 0, 0, 0.36);
+  transform: rotateX(70deg) translateZ(-2px);
+  transform-style: preserve-3d;
 }
 
 .guide-feet {
-  margin-top: 8px;
+  margin-top: -5px;
   display: flex;
   gap: 18px;
+  justify-content: center;
+  transform: translateY(-8px) translateZ(18px);
 }
 
 .guide-feet span {
-  width: 12px;
-  height: 6px;
+  width: 16px;
+  height: 8px;
   border-radius: 999px;
-  background: rgba(0, 245, 255, 0.2);
+  background: linear-gradient(180deg, rgba(154, 244, 255, 0.24), rgba(7, 23, 41, 0.95));
+  border: 1px solid rgba(0, 245, 255, 0.16);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
 }
 
 .guide-caption-line {
@@ -255,14 +459,33 @@
   background: rgba(0, 245, 255, 0.45);
 }
 
+.guide-robot.sleeping .guide-eye::after {
+  display: none;
+}
+
 .guide-robot.listening .guide-status,
-.guide-robot.touring .guide-status {
+.guide-robot.touring .guide-status,
+.guide-robot.conversing .guide-status,
+.guide-robot.mic-active .guide-status,
+.guide-robot.thinking .guide-status {
   box-shadow: 0 0 16px rgba(0, 245, 255, 0.16);
 }
 
 .guide-robot.listening .guide-antenna::after,
-.guide-robot.touring .guide-antenna::after {
+.guide-robot.touring .guide-antenna::after,
+.guide-robot.mic-active .guide-antenna::after,
+.guide-robot.conversing .guide-antenna::after {
   animation: guideSignal 1.4s ease-in-out infinite;
+}
+
+.guide-robot.thinking .guide-antenna::after {
+  animation: guideSignal 0.9s ease-in-out infinite;
+}
+
+.guide-robot.listening .guide-mouth {
+  box-shadow:
+    0 0 12px rgba(0, 245, 255, 0.22),
+    0 0 22px rgba(0, 245, 255, 0.12);
 }
 
 main section {
@@ -293,6 +516,7 @@ body.guide-reduced-motion .guide-robot,
 body.guide-reduced-motion .guide-avatar,
 body.guide-reduced-motion .guide-consent-button,
 body.guide-reduced-motion .guide-action-button,
+body.guide-reduced-motion .guide-heart-light,
 body.guide-reduced-motion main section,
 body.guide-reduced-motion .guide-antenna::after {
   transition: none;
@@ -327,9 +551,42 @@ body.guide-reduced-motion main section.guide-focus {
   }
 }
 
+@keyframes guideHeartBeat {
+  0%,
+  100% {
+    box-shadow:
+      0 0 12px rgba(255, 62, 104, 0.22),
+      0 0 20px rgba(255, 38, 82, 0.12);
+    transform: translateZ(14px) scale(1);
+  }
+
+  18% {
+    box-shadow:
+      0 0 14px rgba(255, 62, 104, 0.3),
+      0 0 24px rgba(255, 38, 82, 0.16);
+    transform: translateZ(14px) scale(1.08);
+  }
+
+  36% {
+    transform: translateZ(14px) scale(0.98);
+  }
+
+  54% {
+    box-shadow:
+      0 0 14px rgba(255, 62, 104, 0.3),
+      0 0 24px rgba(255, 38, 82, 0.16);
+    transform: translateZ(14px) scale(1.08);
+  }
+}
+
 @media (max-width: 640px) {
   .guide-robot {
     width: min(248px, calc(100vw - 24px));
+  }
+
+  .guide-avatar {
+    width: 118px;
+    min-height: 176px;
   }
 
   .guide-bubble {

@@ -36,5 +36,5 @@ app.use('/api/chat', chatRouter)
 app.get('/health', (_req, res) => res.json({ status: 'ok' }))
 
 app.listen(PORT, () => {
-  console.log(`🚀 Backend running on port ${PORT}`)
+  console.log(`UUUHHHHUUUUUUUUU Backend running on port ${PORT} Pam pam pam`)
 })
