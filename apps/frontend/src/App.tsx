@@ -27,6 +27,17 @@ type ExperienceItem = {
   description: string;
 };
 
+type SkillItem = {
+  name: string;
+  level: number;
+  accent?: 'magenta';
+};
+
+type SkillCategory = {
+  title: string;
+  items: SkillItem[];
+};
+
 function App() {
   const { t, i18n } = useTranslation();
 
@@ -40,7 +51,11 @@ function App() {
 
   const aiFeatures = t('ai.features', { returnObjects: true }) as string[];
   const experienceItems = t('experience.items', { returnObjects: true }) as ExperienceItem[];
+  const skillCategories = t('skills.categoryList', { returnObjects: true }) as SkillCategory[];
   const currentLanguage = i18n.resolvedLanguage?.startsWith('de') ? 'de' : 'en';
+  const resumeHref = currentLanguage === 'de'
+    ? '/Lebenslauf_Anastasiia_Sulollari_DE.pdf'
+    : '/CV_Anastasiia_Sulollari_EN.pdf';
 
   useEffect(() => {
     const canvas = document.getElementById('bg-canvas') as HTMLCanvasElement | null;
@@ -237,7 +252,15 @@ function App() {
               <p className="hero-desc">{t('hero.description')}</p>
               <div className="hero-cta">
                 <a href="#contact" className="btn-primary">{t('hero.cta.connect')}</a>
-                <a href="/resume.pdf" className="btn-secondary">{t('hero.cta.resume')}</a>
+                <a
+                  href={resumeHref}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="btn-secondary"
+                  title={t('hero.cta.resumeHint')}
+                >
+                  {t('hero.cta.resume')}
+                </a>
               </div>
             </div>
             <div className="hero-ai-companion">
@@ -276,60 +299,23 @@ function App() {
           <div className="section-label">{t('skills.label')}</div>
           <h2 className="section-title">{t('skills.title')}</h2>
           <div className="skills-grid">
-            <div className="skill-category">
-              <div className="skill-cat-title">{t('skills.categories.frontend')}</div>
-              <div className="skill-item">
-                <span className="skill-dot"></span>
-                <span className="skill-name">React / Redux</span>
-                <div className="skill-bar"><div className="skill-fill" style={{ width: '90%' }}></div></div>
+            {skillCategories.map((category) => (
+              <div className="skill-category" key={category.title}>
+                <div className="skill-cat-title">{category.title}</div>
+                {category.items.map((item) => (
+                  <div className="skill-item" key={`${category.title}-${item.name}`}>
+                    <span className={`skill-dot ${item.accent === 'magenta' ? 'skill-dot-magenta' : ''}`}></span>
+                    <span className="skill-name">{item.name}</span>
+                    <div className="skill-bar">
+                      <div
+                        className={`skill-fill ${item.accent === 'magenta' ? 'skill-fill-magenta' : ''}`}
+                        style={{ width: `${item.level}%` }}
+                      ></div>
+                    </div>
+                  </div>
+                ))}
               </div>
-              <div className="skill-item">
-                <span className="skill-dot"></span>
-                <span className="skill-name">JavaScript (ES6+)</span>
-                <div className="skill-bar"><div className="skill-fill" style={{ width: '88%' }}></div></div>
-              </div>
-              <div className="skill-item">
-                <span className="skill-dot"></span>
-                <span className="skill-name">HTML / CSS</span>
-                <div className="skill-bar"><div className="skill-fill" style={{ width: '95%' }}></div></div>
-              </div>
-            </div>
-            <div className="skill-category">
-              <div className="skill-cat-title">{t('skills.categories.backend')}</div>
-              <div className="skill-item">
-                <span className="skill-dot"></span>
-                <span className="skill-name">Node.js / Express</span>
-                <div className="skill-bar"><div className="skill-fill" style={{ width: '85%' }}></div></div>
-              </div>
-              <div className="skill-item">
-                <span className="skill-dot"></span>
-                <span className="skill-name">TypeScript</span>
-                <div className="skill-bar"><div className="skill-fill" style={{ width: '80%' }}></div></div>
-              </div>
-              <div className="skill-item">
-                <span className="skill-dot"></span>
-                <span className="skill-name">REST APIs</span>
-                <div className="skill-bar"><div className="skill-fill" style={{ width: '88%' }}></div></div>
-              </div>
-            </div>
-            <div className="skill-category">
-              <div className="skill-cat-title">{t('skills.categories.aiTools')}</div>
-              <div className="skill-item">
-                <span className="skill-dot skill-dot-magenta"></span>
-                <span className="skill-name">{t('skills.items.aiIntegration')}</span>
-                <div className="skill-bar"><div className="skill-fill skill-fill-magenta" style={{ width: '82%' }}></div></div>
-              </div>
-              <div className="skill-item">
-                <span className="skill-dot skill-dot-magenta"></span>
-                <span className="skill-name">Docker / Cloud</span>
-                <div className="skill-bar"><div className="skill-fill skill-fill-magenta" style={{ width: '75%' }}></div></div>
-              </div>
-              <div className="skill-item">
-                <span className="skill-dot skill-dot-magenta"></span>
-                <span className="skill-name">MySQL / MongoDB</span>
-                <div className="skill-bar"><div className="skill-fill skill-fill-magenta" style={{ width: '80%' }}></div></div>
-              </div>
-            </div>
+            ))}
           </div>
         </section>
 
@@ -383,18 +369,25 @@ function App() {
                   sulollarianastasiia@gmail.com
                 </div>
               </a>
+              <a href="tel:+4915236148177" className="contact-link">
+                <span className="cl-icon">☎</span>
+                <div className="cl-text">
+                  <span className="cl-label">{t('contact.links.phone')}</span>
+                  +49 152 36148177
+                </div>
+              </a>
               <a href="https://github.com/AnastasiiaSa04" target="_blank" rel="noreferrer" className="contact-link">
                 <span className="cl-icon">⌥</span>
                 <div className="cl-text">
                   <span className="cl-label">{t('contact.links.github')}</span>
-                  github.com/AnastasiiaSa04
+                  https://github.com/AnastasiiaSa04
                 </div>
               </a>
               <a href="https://www.linkedin.com/in/anastasiiasulollaribb3a20369/" target="_blank" rel="noreferrer" className="contact-link">
                 <span className="cl-icon">◈</span>
                 <div className="cl-text">
                   <span className="cl-label">{t('contact.links.linkedin')}</span>
-                  Anastasiia Sulollari
+                  linkedin.com/in/anastasiiasulollaribb3a20369
                 </div>
               </a>
             </div>

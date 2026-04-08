@@ -12,18 +12,19 @@
   "hero": {
     "tag": "Full-Stack Developer · AI Specialist",
     "title": "Building the future with code and intelligence.",
-    "description": "Specializing in production-grade web applications with integrated AI capabilities. Based in Germany and ready for relocation across Germany.",
+    "description": "High-performing Full-Stack Developer with a management background, strong frontend expertise, and practical backend experience. Based in Germany and ready for relocation across Germany.",
     "cta": {
       "connect": "Connect",
-      "resume": "Resume"
+      "resume": "Resume PDF",
+      "resumeHint": "Open the English CV in a new tab"
     },
     "scroll": "Scroll to explore"
   },
   "about": {
     "label": "Identity",
     "title": "Who I Am",
-    "paragraph1": "I am a Full-Stack Developer based in Germany, combining thoughtful frontend craft with reliable backend architecture.",
-    "paragraph2": "I bring leadership, adaptability, and a strong eye for detail to every project I join.",
+    "paragraph1": "I am a high-performing Full-Stack Developer with a background in management and a strong focus on engineering scalable web solutions.",
+    "paragraph2": "My profile combines frontend strength in HTML, CSS, JavaScript, React, Redux, TypeScript, and Tailwind CSS with practical backend work in Node.js, Express, SQL, REST APIs, testing, and deployment.",
     "stats": {
       "leadership": "Years of leadership",
       "languages": "Languages"
@@ -32,20 +33,41 @@
   "skills": {
     "label": "Technical Arsenal",
     "title": "Skills",
-    "categories": {
-      "frontend": "Frontend",
-      "backend": "Backend",
-      "aiTools": "AI & Tools"
-    },
-    "items": {
-      "aiIntegration": "AI Integration"
-    }
+    "categoryList": [
+      {
+        "title": "Frontend",
+        "items": [
+          { "name": "HTML / CSS", "level": 95 },
+          { "name": "JavaScript (ES6+)", "level": 90 },
+          { "name": "React / Redux", "level": 90 },
+          { "name": "TypeScript / Tailwind", "level": 84 }
+        ]
+      },
+      {
+        "title": "Backend",
+        "items": [
+          { "name": "Node.js / Express", "level": 85 },
+          { "name": "RESTful APIs", "level": 88 },
+          { "name": "SQL (MySQL)", "level": 82 },
+          { "name": "MongoDB", "level": 78 }
+        ]
+      },
+      {
+        "title": "Tools & Delivery",
+        "items": [
+          { "name": "Git / GitHub", "level": 86, "accent": "magenta" },
+          { "name": "Docker / Cloud Basics", "level": 78, "accent": "magenta" },
+          { "name": "Agile / Scrum", "level": 80, "accent": "magenta" },
+          { "name": "Linux / System Analysis", "level": 76, "accent": "magenta" }
+        ]
+      }
+    ]
   },
   "ai": {
     "label": "AI Integration",
     "title": "My AI Twin",
     "intro1": "This site does not just show my AI skills. It demonstrates them live through the assistant placed beside my name in the hero section.",
-    "intro2": "Ask it about my work, stack, relocation across Germany, or my frontend experience at Kunst Schule Berlin from January 2026 to April 2026.",
+    "intro2": "Ask it about my work, tech stack, relocation across Germany, management background, or my frontend experience at Kunst Schule Berlin from January 2026 to April 2026.",
     "link": "Open the assistant in the hero section",
     "features": [
       "LLM integration with live responses",
@@ -62,7 +84,7 @@
         "date": "JANUARY 2026 - APRIL 2026",
         "role": "Frontend Experience",
         "company": "Kunst Schule Berlin - Berlin, Germany",
-        "description": "Frontend experience at Kunst Schule Berlin from January 2026 to April 2026."
+        "description": "Frontend experience at Kunst Schule Berlin, with a focus on interface quality, layout, and visual presentation."
       },
       {
         "date": "DECEMBER 2024 - DECEMBER 2025",
@@ -80,7 +102,13 @@
         "date": "MAY 2013 - DECEMBER 2019",
         "role": "Director",
         "company": "Rosinant Riding School, Ukraine",
-        "description": "Full business management: team leadership, tournament organization, PR, budget planning. Led a diverse team and grew the school's community presence significantly."
+        "description": "Strategic planning, leadership of cross-functional teams, public relations, budget planning, and international tournament organization."
+      },
+      {
+        "date": "JUNE 2010 - MAY 2013",
+        "role": "Riding Instructor",
+        "company": "Rosinant Riding School, Ukraine",
+        "description": "Teaching and supervision, training of tournament participants, and horse care and management."
       },
       {
         "date": "SEPTEMBER 2010 - MAY 2015",
@@ -95,10 +123,11 @@
     "title": "Contact",
     "links": {
       "email": "Email",
+      "phone": "Phone",
       "github": "GitHub",
       "linkedin": "LinkedIn"
     },
-    "opportunities": "I am currently open to full-time roles, freelance projects, and AI integration consulting.",
+    "opportunities": "I am currently open to full-time roles, freelance projects, and opportunities where I can contribute to scalable products with strong frontend and practical backend work.",
     "location": "Germany, Oschatz - Ready for relocation across Germany and open to remote collaboration.",
     "availability": "AVAILABLE FOR NEW PROJECTS"
   },
@@ -110,13 +139,14 @@
   "chat": {
     "agentLabel": "AI_AGENT: ANASTASIIA_v1.0",
     "live": "LIVE",
-    "welcome": "Hello, I'm Anastasiia's AI assistant. I can tell you about her skills, projects, relocation across Germany, frontend experience at Kunst Schule Berlin, and professional strengths.",
+    "welcome": "Hello, I'm Anastasiia's AI assistant. I can tell you about her skills, projects, leadership background, relocation across Germany, resume details, and frontend experience at Kunst Schule Berlin.",
     "loading": "Analyzing profile data...",
     "placeholderLoading": "Preparing a thoughtful reply...",
     "placeholder": "Ask about skills, relocation across Germany, frontend experience at Kunst Schule Berlin, AI work, or career goals...",
     "quickPrompts": [
       "Tell me about Anastasiia's tech stack",
       "Is she ready for relocation across Germany?",
+      "What does her resume highlight?",
       "Tell me about her frontend experience at Kunst Schule Berlin",
       "How would you describe Anastasiia professionally?"
     ],

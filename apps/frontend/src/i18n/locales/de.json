@@ -12,18 +12,19 @@
   "hero": {
     "tag": "Full-Stack Developerin · KI-Spezialistin",
     "title": "Die Zukunft mit Code und Intelligenz gestalten.",
-    "description": "Spezialisiert auf produktionsreife Webanwendungen mit integrierten KI-Funktionen. In Deutschland ansässig und bereit für Relocation innerhalb Deutschlands.",
+    "description": "Leistungsstarke Full-Stack-Developerin mit Management-Hintergrund, starker Frontend-Expertise und praktischer Backend-Erfahrung. In Deutschland ansässig und bereit für Relocation innerhalb Deutschlands.",
     "cta": {
       "connect": "Kontakt",
-      "resume": "Lebenslauf"
+      "resume": "Lebenslauf PDF",
+      "resumeHint": "Öffne den deutschen Lebenslauf in einem neuen Tab"
     },
     "scroll": "Weiter nach unten"
   },
   "about": {
     "label": "Profil",
     "title": "Wer ich bin",
-    "paragraph1": "Ich bin Full-Stack-Developerin in Deutschland und verbinde durchdachtes Frontend-Handwerk mit zuverlässiger Backend-Architektur.",
-    "paragraph2": "Ich bringe Führungserfahrung, Anpassungsfähigkeit und einen klaren Blick für Details in jedes Projekt ein.",
+    "paragraph1": "Ich bin eine motivierte Full-Stack-Entwicklerin mit soliden Kenntnissen in modernen Frontend-Technologien und ersten praktischen Erfahrungen im Backend mit Node.js, Express und TypeScript.",
+    "paragraph2": "Ich arbeite sicher mit MySQL, REST-APIs, Testing und Deployment von Webanwendungen und bringe Teamfähigkeit, Führungsverantwortung und eine hohe Lernbereitschaft in agile Entwicklungsumgebungen ein.",
     "stats": {
       "leadership": "Jahre Führungserfahrung",
       "languages": "Sprachen"
@@ -32,20 +33,41 @@
   "skills": {
     "label": "Technisches Arsenal",
     "title": "Skills",
-    "categories": {
-      "frontend": "Frontend",
-      "backend": "Backend",
-      "aiTools": "KI & Tools"
-    },
-    "items": {
-      "aiIntegration": "KI-Integration"
-    }
+    "categoryList": [
+      {
+        "title": "Frontend",
+        "items": [
+          { "name": "HTML / CSS", "level": 95 },
+          { "name": "JavaScript (ES6+)", "level": 90 },
+          { "name": "React / Redux", "level": 90 },
+          { "name": "TypeScript / Tailwind", "level": 84 }
+        ]
+      },
+      {
+        "title": "Backend",
+        "items": [
+          { "name": "Node.js / Express", "level": 85 },
+          { "name": "REST-APIs", "level": 88 },
+          { "name": "SQL (MySQL)", "level": 82 },
+          { "name": "MongoDB", "level": 78 }
+        ]
+      },
+      {
+        "title": "Tools & Delivery",
+        "items": [
+          { "name": "Git / GitHub", "level": 86, "accent": "magenta" },
+          { "name": "Docker / Cloud-Grundlagen", "level": 78, "accent": "magenta" },
+          { "name": "Agile / Scrum", "level": 80, "accent": "magenta" },
+          { "name": "Linux / Systemanalyse", "level": 76, "accent": "magenta" }
+        ]
+      }
+    ]
   },
   "ai": {
     "label": "KI-Integration",
     "title": "Mein KI-Zwilling",
     "intro1": "Diese Seite zeigt meine KI-Skills nicht nur, sie demonstriert sie live durch den Assistenten direkt neben meinem Namen im Hero-Bereich.",
-    "intro2": "Frag ihn nach meiner Arbeit, meinem Stack, meiner Relocation-Bereitschaft innerhalb Deutschlands oder meiner Frontend-Erfahrung an der Kunst Schule Berlin von Januar 2026 bis April 2026.",
+    "intro2": "Frag ihn nach meiner Arbeit, meinem Stack, meinem Management-Hintergrund, meiner Relocation-Bereitschaft innerhalb Deutschlands oder meiner Frontend-Erfahrung an der Kunst Schule Berlin von Januar 2026 bis April 2026.",
     "link": "Assistenten im Hero-Bereich öffnen",
     "features": [
       "LLM-Integration mit Live-Antworten",
@@ -62,7 +84,7 @@
         "date": "JANUAR 2026 - APRIL 2026",
         "role": "Frontend-Erfahrung",
         "company": "Kunst Schule Berlin - Berlin, Deutschland",
-        "description": "Frontend-Erfahrung an der Kunst Schule Berlin von Januar 2026 bis April 2026."
+        "description": "Frontend-Erfahrung an der Kunst Schule Berlin mit Fokus auf Interface-Qualität, Layout und visuelle Präsentation."
       },
       {
         "date": "DEZEMBER 2024 - DEZEMBER 2025",
@@ -80,7 +102,13 @@
         "date": "MAI 2013 - DEZEMBER 2019",
         "role": "Direktorin",
         "company": "Rosinant Riding School, Ukraine",
-        "description": "Gesamte Unternehmensführung: Teamleitung, Turnierorganisation, PR und Budgetplanung. Aufbau einer starken Community und Leitung eines vielseitigen Teams."
+        "description": "Strategische Planung, Leitung funktionsübergreifender Teams, Öffentlichkeitsarbeit, Budgetplanung und Organisation internationaler Turniere."
+      },
+      {
+        "date": "JUNI 2010 - MAI 2013",
+        "role": "Reitlehrerin",
+        "company": "Rosinant Riding School, Ukraine",
+        "description": "Unterricht und Betreuung, Training von Turnierteilnehmenden sowie Pflege und Management der Pferde."
       },
       {
         "date": "SEPTEMBER 2010 - MAI 2015",
@@ -95,10 +123,11 @@
     "title": "Kontakt",
     "links": {
       "email": "E-Mail",
+      "phone": "Telefon",
       "github": "GitHub",
       "linkedin": "LinkedIn"
     },
-    "opportunities": "Ich bin aktuell offen für Vollzeitstellen, Freelance-Projekte und Beratung rund um KI-Integration.",
+    "opportunities": "Ich bin aktuell offen für Vollzeitstellen, Freelance-Projekte und Möglichkeiten, an skalierbaren Produkten mit starkem Frontend und praktischem Backend mitzuwirken.",
     "location": "Deutschland, Oschatz - Bereit für Relocation innerhalb Deutschlands und offen für Remote-Zusammenarbeit.",
     "availability": "VERFÜGBAR FÜR NEUE PROJEKTE"
   },
@@ -110,13 +139,14 @@
   "chat": {
     "agentLabel": "AI_AGENT: ANASTASIIA_v1.0",
     "live": "AKTIV",
-    "welcome": "Hallo, ich bin Anastasiias KI-Assistent. Ich kann über ihre Skills, Projekte, Relocation innerhalb Deutschlands, Frontend-Erfahrung an der Kunst Schule Berlin und ihre professionellen Stärken sprechen.",
+    "welcome": "Hallo, ich bin Anastasiias KI-Assistent. Ich kann über ihre Skills, Projekte, ihren Führungs- und Management-Hintergrund, ihre Relocation-Bereitschaft innerhalb Deutschlands, Lebenslauf-Details und ihre Frontend-Erfahrung an der Kunst Schule Berlin sprechen.",
     "loading": "Profildaten werden analysiert...",
     "placeholderLoading": "Eine durchdachte Antwort wird vorbereitet...",
     "placeholder": "Frag nach Skills, Relocation innerhalb Deutschlands, Frontend-Erfahrung an der Kunst Schule Berlin, KI-Projekten oder Karrierezielen...",
     "quickPrompts": [
       "Erzähl mir von Anastasiias Tech-Stack",
       "Ist sie für Relocation innerhalb Deutschlands bereit?",
+      "Was hebt ihr Lebenslauf besonders hervor?",
       "Erzähl mir von ihrer Frontend-Erfahrung an der Kunst Schule Berlin",
       "Wie würdest du Anastasiia professionell beschreiben?"
     ],
