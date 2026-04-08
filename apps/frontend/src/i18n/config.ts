@@ -14,10 +14,10 @@ i18n
       en: { translation: en },
       de: { translation: de },
     },
-    fallbackLng: 'en',
+    fallbackLng: 'de',
     load: 'languageOnly',
     detection: {
-      order: ['localStorage', 'navigator', 'htmlTag'],
+      order: ['localStorage', 'htmlTag'],
       caches: ['localStorage'],
     },
     interpolation: {

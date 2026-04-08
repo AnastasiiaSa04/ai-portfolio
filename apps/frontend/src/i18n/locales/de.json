@@ -1,6 +1,6 @@
 {
   "nav": {
-    "about": "Uber mich",
+    "about": "Über mich",
     "skills": "Skills",
     "experience": "Erfahrung",
     "aiTwin": "KI-Zwilling",
@@ -12,7 +12,7 @@
   "hero": {
     "tag": "Full-Stack Developerin · KI-Spezialistin",
     "title": "Die Zukunft mit Code und Intelligenz gestalten.",
-    "description": "Spezialisiert auf produktionsreife Webanwendungen mit integrierten KI-Funktionen. In Deutschland ansassig und bereit fur Relocation innerhalb Deutschlands.",
+    "description": "Spezialisiert auf produktionsreife Webanwendungen mit integrierten KI-Funktionen. In Deutschland ansässig und bereit für Relocation innerhalb Deutschlands.",
     "cta": {
       "connect": "Kontakt",
       "resume": "Lebenslauf"
@@ -22,10 +22,10 @@
   "about": {
     "label": "Profil",
     "title": "Wer ich bin",
-    "paragraph1": "Ich bin Full-Stack-Developerin in Deutschland und verbinde durchdachtes Frontend-Handwerk mit zuverlassiger Backend-Architektur.",
-    "paragraph2": "Ich bringe Fuhrungserfahrung, Anpassungsfahigkeit und einen klaren Blick fur Details in jedes Projekt ein.",
+    "paragraph1": "Ich bin Full-Stack-Developerin in Deutschland und verbinde durchdachtes Frontend-Handwerk mit zuverlässiger Backend-Architektur.",
+    "paragraph2": "Ich bringe Führungserfahrung, Anpassungsfähigkeit und einen klaren Blick für Details in jedes Projekt ein.",
     "stats": {
-      "leadership": "Jahre Fuhrungserfahrung",
+      "leadership": "Jahre Führungserfahrung",
       "languages": "Sprachen"
     }
   },
@@ -46,7 +46,7 @@
     "title": "Mein KI-Zwilling",
     "intro1": "Diese Seite zeigt meine KI-Skills nicht nur, sie demonstriert sie live durch den Assistenten direkt neben meinem Namen im Hero-Bereich.",
     "intro2": "Frag ihn nach meiner Arbeit, meinem Stack, meiner Relocation-Bereitschaft innerhalb Deutschlands oder meiner Frontend-Erfahrung an der Kunst Schule Berlin von Januar 2026 bis April 2026.",
-    "link": "Assistenten im Hero-Bereich offnen",
+    "link": "Assistenten im Hero-Bereich öffnen",
     "features": [
       "LLM-Integration mit Live-Antworten",
       "Kontextbezogene Antworten zu meinem Profil",
@@ -74,19 +74,19 @@
         "date": "JUNI 2023 - JUNI 2024",
         "role": "Ehrenamtliche Dolmetscherin",
         "company": "Deutsches Rotes Kreuz (DRK), Deutschland",
-        "description": "Sprachmittlung DE <-> RU/UK in medizinischen und sozialen Einrichtungen. Unterstutzung bei digitalen Antragen, Behordenformularen und interkultureller Kommunikation."
+        "description": "Sprachmittlung DE <-> RU/UK in medizinischen und sozialen Einrichtungen. Unterstützung bei digitalen Anträgen, Behördenformularen und interkultureller Kommunikation."
       },
       {
         "date": "MAI 2013 - DEZEMBER 2019",
         "role": "Direktorin",
         "company": "Rosinant Riding School, Ukraine",
-        "description": "Gesamte Unternehmensfuhrung: Teamleitung, Turnierorganisation, PR und Budgetplanung. Aufbau einer starken Community und Leitung eines vielseitigen Teams."
+        "description": "Gesamte Unternehmensführung: Teamleitung, Turnierorganisation, PR und Budgetplanung. Aufbau einer starken Community und Leitung eines vielseitigen Teams."
       },
       {
         "date": "SEPTEMBER 2010 - MAI 2015",
-        "role": "Staatliche Medizinische Universitat",
+        "role": "Staatliche Medizinische Universität",
         "company": "Ukraine - Ausbildung",
-        "description": "Akademische Grundlage in analytischem Denken, Disziplin und wissenschaftlicher Genauigkeit, die heute meine systematische und prazise Arbeitsweise in der Softwareentwicklung pragt."
+        "description": "Akademische Grundlage in analytischem Denken, Disziplin und wissenschaftlicher Genauigkeit, die heute meine systematische und präzise Arbeitsweise in der Softwareentwicklung prägt."
       }
     ]
   },
@@ -98,9 +98,9 @@
       "github": "GitHub",
       "linkedin": "LinkedIn"
     },
-    "opportunities": "Ich bin aktuell offen fur Vollzeitstellen, Freelance-Projekte und Beratung rund um KI-Integration.",
-    "location": "Deutschland, Oschatz - Bereit fur Relocation innerhalb Deutschlands und offen fur Remote-Zusammenarbeit.",
-    "availability": "VERFUGBAR FUR NEUE PROJEKTE"
+    "opportunities": "Ich bin aktuell offen für Vollzeitstellen, Freelance-Projekte und Beratung rund um KI-Integration.",
+    "location": "Deutschland, Oschatz - Bereit für Relocation innerhalb Deutschlands und offen für Remote-Zusammenarbeit.",
+    "availability": "VERFÜGBAR FÜR NEUE PROJEKTE"
   },
   "footer": {
     "copyright": "(c) 2026 ANASTASIIA SULOLLARI",
@@ -110,50 +110,50 @@
   "chat": {
     "agentLabel": "AI_AGENT: ANASTASIIA_v1.0",
     "live": "AKTIV",
-    "welcome": "Hallo, ich bin Anastasiias KI-Assistent. Ich kann uber ihre Skills, Projekte, Relocation innerhalb Deutschlands, Frontend-Erfahrung an der Kunst Schule Berlin und ihre professionellen Starken sprechen.",
+    "welcome": "Hallo, ich bin Anastasiias KI-Assistent. Ich kann über ihre Skills, Projekte, Relocation innerhalb Deutschlands, Frontend-Erfahrung an der Kunst Schule Berlin und ihre professionellen Stärken sprechen.",
     "loading": "Profildaten werden analysiert...",
     "placeholderLoading": "Eine durchdachte Antwort wird vorbereitet...",
     "placeholder": "Frag nach Skills, Relocation innerhalb Deutschlands, Frontend-Erfahrung an der Kunst Schule Berlin, KI-Projekten oder Karrierezielen...",
     "quickPrompts": [
-      "Erzahl mir von Anastasiias Tech-Stack",
-      "Ist sie fur Relocation innerhalb Deutschlands bereit?",
-      "Erzahl mir von ihrer Frontend-Erfahrung an der Kunst Schule Berlin",
-      "Wie wurdest du Anastasiia professionell beschreiben?"
+      "Erzähl mir von Anastasiias Tech-Stack",
+      "Ist sie für Relocation innerhalb Deutschlands bereit?",
+      "Erzähl mir von ihrer Frontend-Erfahrung an der Kunst Schule Berlin",
+      "Wie würdest du Anastasiia professionell beschreiben?"
     ],
     "guestLabel": "GAST",
     "assistantLabel": "KI",
-    "error": "Der Assistent ist vorubergehend nicht verfugbar.",
+    "error": "Der Assistent ist vorübergehend nicht verfügbar.",
     "errorLabel": "KI-Assistent"
   },
   "guide": {
     "sections": {
-      "about": "Uber mich",
+      "about": "Über mich",
       "skills": "Skills",
       "experience": "Erfahrung",
       "aiTwin": "KI-Zwilling",
       "contact": "Kontakt"
     },
-    "idleCaption": "Hallo, ich bin Nova, dein Guide. Drucke auf Tour und ich fuhre dich sanft durch die Seite.",
+    "idleCaption": "Hallo, ich bin Nova, dein Guide. Drücke auf Tour und ich führe dich sanft durch die Seite.",
     "sectionNotFound": "Bereich nicht gefunden.",
     "readyToExplore": "Bereit zum Erkunden.",
     "tourComplete": "Die Tour ist abgeschlossen. Starte sie jederzeit erneut.",
-    "intro": "Hallo, ich bin Nova, Anastasiias Guide-Roboter. Ich fuhre dich durch die wichtigsten Bereiche dieser Website.",
-    "introBubble": "Hallo, ich bin Nova. Ich bin bereit, dich durch die wichtigsten Bereiche dieser Website zu fuhren.",
-    "tourStopped": "Die Tour wurde gestoppt. Starte sie jederzeit erneut, wenn du eine Fuhrung mochtest.",
+    "intro": "Hallo, ich bin Nova, Anastasiias Guide-Roboter. Ich führe dich durch die wichtigsten Bereiche dieser Website.",
+    "introBubble": "Hallo, ich bin Nova. Ich bin bereit, dich durch die wichtigsten Bereiche dieser Website zu führen.",
+    "tourStopped": "Die Tour wurde gestoppt. Starte sie jederzeit erneut, wenn du eine Führung möchtest.",
     "status": {
       "onTour": "AUF TOUR",
       "awake": "AKTIV",
       "sleeping": "RUHEMODUS"
     },
     "meta": {
-      "guidedTour": "gefuhte tour",
+      "guidedTour": "geführte Tour",
       "ready": "bereit",
       "wholeSite": "Gesamte Seite",
       "tourStop": "Tour-Stopp"
     },
     "buttons": {
       "tour": "Tour",
-      "stop": "Stop"
+      "stop": "Stopp"
     },
     "captionLine": {
       "touring": "tour: {{section}}",

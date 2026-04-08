@@ -2,6 +2,8 @@ import { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import './GuideRobot.css';
 
+type GuideLanguage = 'de' | 'en';
+
 type GuideSection = {
   id: string;
   label: string;
@@ -47,8 +49,26 @@ function getStepDelay(text: string, reducedMotion: boolean) {
   return Math.min(2800, Math.max(1100, text.length * 20));
 }
 
+function pickGuideVoice(voices: SpeechSynthesisVoice[], language: GuideLanguage) {
+  const priorityNames = language === 'de'
+    ? ['Anna', 'Petra', 'Markus', 'Yannick']
+    : ['Samantha', 'Nicky', 'Daniel', 'Karen', 'Moira', 'Martha'];
+
+  for (const name of priorityNames) {
+    const match = voices.find((voice) => voice.name === name);
+    if (match) return match;
+  }
+
+  return voices.find((voice) => voice.lang.toLowerCase().startsWith(language)) ?? voices[0] ?? null;
+}
+
+function getSpeechLocale(language: GuideLanguage) {
+  return language === 'de' ? 'de-DE' : 'en-US';
+}
+
 function GuideRobot() {
   const { t, i18n } = useTranslation();
+  const currentLanguage: GuideLanguage = i18n.resolvedLanguage?.startsWith('en') ? 'en' : 'de';
   const guideSections: GuideSection[] = [
     { id: 'about', label: t('guide.sections.about') },
     { id: 'skills', label: t('guide.sections.skills') },
@@ -67,6 +87,14 @@ function GuideRobot() {
   const actionTokenRef = useRef(0);
   const tourQueueRef = useRef<string[]>([]);
   const stepTimeoutRef = useRef<number | null>(null);
+  const voicesRef = useRef<Record<GuideLanguage, SpeechSynthesisVoice | null>>({
+    de: null,
+    en: null,
+  });
+
+  function hasSpeech() {
+    return 'speechSynthesis' in window;
+  }
 
   function getDefaultPosition() {
     const compact = window.innerWidth <= 640;
@@ -136,6 +164,16 @@ function GuideRobot() {
     stepTimeoutRef.current = null;
   }
 
+  function loadVoices() {
+    if (!hasSpeech()) return;
+
+    const voices = window.speechSynthesis.getVoices();
+    voicesRef.current = {
+      de: pickGuideVoice(voices, 'de'),
+      en: pickGuideVoice(voices, 'en'),
+    };
+  }
+
   function announce(message: string, options?: { bubbleText?: string; onEnd?: () => void }) {
     const token = ++actionTokenRef.current;
     const bubbleText = options?.bubbleText ?? message;
@@ -143,13 +181,37 @@ function GuideRobot() {
     setCaption(shortenText(bubbleText));
     clearScheduledStep();
 
-    if (!options?.onEnd) return;
+    if (!hasSpeech()) {
+      if (!options?.onEnd) return;
 
-    stepTimeoutRef.current = window.setTimeout(() => {
-      stepTimeoutRef.current = null;
+      stepTimeoutRef.current = window.setTimeout(() => {
+        stepTimeoutRef.current = null;
+        if (actionTokenRef.current !== token) return;
+        options.onEnd?.();
+      }, getStepDelay(bubbleText, reducedMotion));
+      return;
+    }
+
+    window.speechSynthesis.cancel();
+
+    const utterance = new SpeechSynthesisUtterance(message);
+    utterance.lang = getSpeechLocale(currentLanguage);
+    utterance.voice = voicesRef.current[currentLanguage];
+    utterance.rate = reducedMotion ? 0.98 : currentLanguage === 'de' ? 0.96 : 0.94;
+    utterance.pitch = 1.04;
+    utterance.volume = 1;
+
+    utterance.onend = () => {
       if (actionTokenRef.current !== token) return;
-      options.onEnd?.();
-    }, getStepDelay(bubbleText, reducedMotion));
+      options?.onEnd?.();
+    };
+
+    utterance.onerror = () => {
+      if (actionTokenRef.current !== token) return;
+      options?.onEnd?.();
+    };
+
+    window.speechSynthesis.speak(utterance);
   }
 
   function cancelTour(clearSection = false) {
@@ -157,6 +219,10 @@ function GuideRobot() {
     clearScheduledStep();
     tourQueueRef.current = [];
     setIsTouring(false);
+
+    if (hasSpeech()) {
+      window.speechSynthesis.cancel();
+    }
 
     if (clearSection) {
       setActiveSectionId(null);
@@ -173,8 +239,8 @@ function GuideRobot() {
       setActiveSectionId(null);
       syncGuideFocus(null);
       setRobotPosition(getDefaultPosition());
-      setCaption(t('guide.tourComplete'));
       setRobotState('sleeping');
+      announce(t('guide.tourComplete'));
       return;
     }
 
@@ -218,7 +284,7 @@ function GuideRobot() {
   function stopTour() {
     cancelTour(true);
     setRobotState('sleeping');
-    setCaption(t('guide.tourStopped'));
+    announce(t('guide.tourStopped'));
   }
 
   useEffect(() => {
@@ -235,11 +301,21 @@ function GuideRobot() {
     setRobotPosition(getDefaultPosition());
     motionQuery.addEventListener('change', handleMotion);
 
+    loadVoices();
+
+    if (hasSpeech()) {
+      window.speechSynthesis.onvoiceschanged = loadVoices;
+    }
+
     return () => {
       clearScheduledStep();
       motionQuery.removeEventListener('change', handleMotion);
       syncGuideFocus(null);
       document.body.classList.remove('guide-mode', 'guide-reduced-motion');
+      if (hasSpeech()) {
+        window.speechSynthesis.cancel();
+        window.speechSynthesis.onvoiceschanged = null;
+      }
     };
   }, []);
 
