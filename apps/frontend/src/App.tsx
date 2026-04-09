@@ -383,11 +383,11 @@ function App() {
                   https://github.com/AnastasiiaSa04
                 </div>
               </a>
-              <a href="https://www.linkedin.com/in/anastasiiasulollaribb3a20369/" target="_blank" rel="noreferrer" className="contact-link">
+              <a href="https://linkedin.com/in/anastasiia-sulollari" target="_blank" rel="noreferrer" className="contact-link">
                 <span className="cl-icon">◈</span>
                 <div className="cl-text">
                   <span className="cl-label">{t('contact.links.linkedin')}</span>
-                  linkedin.com/in/anastasiiasulollaribb3a20369
+                  www.linkedin.com/in/anastasiia-sulollari
                 </div>
               </a>
             </div>

@@ -110,7 +110,6 @@ function buildFallbackReply(input: string) {
     });
   }
 
-  // Дефолтный ответ если ничего не подошло
   return pickLocalizedText(language, {
     en: `Thank you for your question. Anastasiia Sulollari is a full-stack developer based in Germany, ready for relocation across Germany, with strong frontend skills, practical backend experience, and frontend work at Kunst Schule Berlin from January 2026 to April 2026. She also brings leadership experience, multilingual communication, and a thoughtful product mindset. How can I help you explore her background in more detail?`,
     ru: `Спасибо за вопрос. Анастасия Сулоллари — full-stack разработчик из Германии, готовая к релокации по всей Германии, с сильным frontend-бэкграундом, практическим backend-опытом и frontend-опытом в Kunst Schule Berlin с января 2026 по апрель 2026 года. Она также сочетает управленческий опыт, многоязычную коммуникацию и внимательный product mindset. Чем я могу помочь вам узнать больше о её опыте?`,

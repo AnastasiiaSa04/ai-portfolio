@@ -51,8 +51,8 @@ function getStepDelay(text: string, reducedMotion: boolean) {
 
 function pickGuideVoice(voices: SpeechSynthesisVoice[], language: GuideLanguage) {
   const priorityNames = language === 'de'
-    ? ['Anna', 'Petra', 'Markus', 'Yannick']
-    : ['Samantha', 'Nicky', 'Daniel', 'Karen', 'Moira', 'Martha'];
+    ? ['Markus','Anna', 'Petra', 'Yannick']
+    : ['Daniel','Samantha', 'Nicky', 'Karen', 'Moira', 'Martha'];
 
   for (const name of priorityNames) {
     const match = voices.find((voice) => voice.name === name);
