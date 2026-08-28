@@ -16,18 +16,16 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Setup Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v5
         with:
-          node-version: 20
-          cache: npm
-          cache-dependency-path: apps/frontend/package-lock.json
+          node-version: 24
 
       - name: Install dependencies
         working-directory: apps/frontend
-        run: npm ci
+        run: npm install
 
       - name: Build
         working-directory: apps/frontend
@@ -37,9 +35,10 @@ jobs:
         uses: actions/configure-pages@v5
 
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v4
         with:
           path: apps/frontend/dist
 
       - name: Deploy
         uses: actions/deploy-pages@v4
+
